@@ -10,7 +10,7 @@
     <link rel="canonical" href="@yield('canonical', url()->current())">
     <meta property="og:title" content="@yield('og_title', 'Konastone Autos and Imports')">
     <meta property="og:description" content="@yield('og_description', 'Premium handcrafted doors for luxury spaces.')">
-    <meta property="og:image" content="@yield('og_image', asset('assets/img/logo.svg'))">
+    <meta property="og:image" content="@yield('og_image', asset('assets/img/konastone-logo.svg'))">
     <meta name="author" content="Konastone Autos and Imports">
     <meta name="description" content="Konastone Autos and Imports - Dealer in quality and premium cars.">
     <meta name="keywords" content="Konastone Autos and Imports, premium cars, car dealership">
@@ -31,7 +31,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicons/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('assets/img/favicons/manifest.json') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="assets/img/favicons/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="{{ asset('assets/img/favicons/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
     <link rel="preconnect" href="../../../fonts.googleapis.com/index.html">
     <link rel="preconnect" href="../../../fonts.gstatic.com/index.html" crossorigin>
@@ -79,7 +79,7 @@
     </div>
     <div class="th-menu-wrapper">
         <div class="th-menu-area text-center"><button class="th-menu-toggle"><i class="fal fa-times"></i></button>
-            <div class="mobile-logo"><a href="/"><span class="logo-text">KONASTONE</span></a></div>
+            <div class="mobile-logo"><a href="/"><img src="{{ asset('assets/img/konastone-logo.svg') }}" alt="Konastone Autos and Imports"></a></div>
             <div class="th-mobile-menu">
                 <ul>
                     <li class="menu-item-has-children active"><a href="index.html">Home</a>
@@ -108,14 +108,14 @@
                     </li>
                     <li class="menu-item-has-children"><a href="#">Inventory</a>
                         <ul class="sub-menu">
-                            <li><a href="inventory-grid.html">Inventory Grid</a></li>
-                            <li><a href="inventory-listing.html">Inventory Listing</a></li>
+                            <li><a href="{{ route('inventory.grid') }}">Inventory Grid</a></li>
+                            <li><a href="{{ route('inventory.index') }}">Inventory Listing</a></li>
                             <li><a href="inventory-left-sidebar.html">Inventory Left Sidebar</a></li>
                             <li><a href="inventory-right-sidebar.html">Inventory Right Sidebar</a></li>
-                            <li><a href="inventory-sold.html">Sold Inventory</a></li>
-                            <li><a href="single-inventory.html">Single Inventory</a></li>
-                            <li><a href="finance-calculator.html">Finance Calculator</a></li>
-                            <li><a href="sell-a-car.html">Sell a Car</a></li>
+                            <li><a href="{{ route('inventory.sold') }}">Sold Inventory</a></li>
+                            <li><a href="{{ route('inventory.index') }}">Single Inventory</a></li>
+                            <li><a href="{{ route('finance.calculator') }}">Finance Calculator</a></li>
+                            <li><a href="{{ route('sell.car') }}">Sell a Car</a></li>
                             <li><a href="inventory-comparison.html">Inventory Comparison</a></li>
                         </ul>
                     </li>
@@ -186,7 +186,7 @@
                 <div class="th-container">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto">
-                            <div class="header-logo"><a href="/"><span class="logo-text">KONASTONE</span></a></div>
+                            <div class="header-logo"><a href="/"><img src="{{ asset('assets/img/konastone-logo.svg') }}" alt="Konastone Autos and Imports"></a></div>
                         </div>
                         <div class="col-auto">
                             <nav class="main-menu sapace-left d-none d-lg-inline-block">
@@ -217,14 +217,14 @@
                                     </li>
                                     <li class="menu-item-has-children"><a href="#">Inventory</a>
                                         <ul class="sub-menu">
-                                            <li><a href="inventory-grid.html">Inventory Grid</a></li>
-                                            <li><a href="inventory-listing.html">Inventory Listing</a></li>
+                                            <li><a href="{{ route('inventory.grid') }}">Inventory Grid</a></li>
+                                            <li><a href="{{ route('inventory.index') }}">Inventory Listing</a></li>
                                             <li><a href="inventory-left-sidebar.html">Inventory Left Sidebar</a></li>
                                             <li><a href="inventory-right-sidebar.html">Inventory Right Sidebar</a></li>
-                                            <li><a href="inventory-sold.html">Sold Inventory</a></li>
-                                            <li><a href="single-inventory.html">Single Inventory</a></li>
-                                            <li><a href="finance-calculator.html">Finance Calculator</a></li>
-                                            <li><a href="sell-a-car.html">Sell a Car</a></li>
+                                            <li><a href="{{ route('inventory.sold') }}">Sold Inventory</a></li>
+                                            <li><a href="{{ route('inventory.index') }}">Single Inventory</a></li>
+                                            <li><a href="{{ route('finance.calculator') }}">Finance Calculator</a></li>
+                                            <li><a href="{{ route('sell.car') }}">Sell a Car</a></li>
                                             <li><a href="inventory-comparison.html">Inventory Comparison</a></li>
                                         </ul>
                                     </li>
@@ -258,7 +258,7 @@
                             </nav><button type="button" class="th-menu-toggle d-block d-lg-none"><i class="far fa-bars"></i></button>
                         </div>
                         <div class="col-auto d-none d-xl-block">
-                            <div class="header-button"><button type="button" class="simple-icon searchBoxToggler"><i class="far fa-search"></i></button> <button type="button" class="simple-icon sideMenuToggler"><i class="fa-sharp fa-regular fa-bag-shopping"></i> <span class="badge">5</span></button> <a href="sell-a-car.html" class="th-btn">Adding List <i class="fa-solid fa-circle-plus"></i></a></div>
+                            <div class="header-button"><button type="button" class="simple-icon searchBoxToggler"><i class="far fa-search"></i></button> <button type="button" class="simple-icon sideMenuToggler"><i class="fa-sharp fa-regular fa-bag-shopping"></i> <span class="badge">5</span></button> <a href="{{ route('sell.car') }}" class="th-btn">Adding List <i class="fa-solid fa-circle-plus"></i></a></div>
                         </div>
                     </div>
                 </div>
@@ -277,7 +277,7 @@
                                     <div class="hero-1-content"><span class="sub-title" data-ani="slideinup" data-ani-delay="0.2s"><span class="text-theme">Luxury</span> Meets Affordability</span>
                                         <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.4s">Find Your Perfect Car For Drive</h1>
                                         <p class="hero-text" data-ani="slideinup" data-ani-delay="0.6s">A car dealership is a business that specializes in selling new or used vehicles to customers. Suitable for any car dealer websites, business websites.</p>
-                                        <div class="btn-group justify-content-center" data-ani="slideinup" data-ani-delay="0.8s"><a href="inventory-listing.html" class="th-btn style2">Go To Listing <i class="fas fa-arrow-up-right"></i></a> <a href="contact.html" class="th-btn style3 text-white">Contact us <i class="fas fa-arrow-up-right"></i></a></div>
+                                        <div class="btn-group justify-content-center" data-ani="slideinup" data-ani-delay="0.8s"><a href="{{ route('inventory.index') }}" class="th-btn style2">Go To Listing <i class="fas fa-arrow-up-right"></i></a> <a href="contact.html" class="th-btn style3 text-white">Contact us <i class="fas fa-arrow-up-right"></i></a></div>
                                     </div>
                                 </div>
                                 <div class="col-xxl-7 col-xl-6 col-lg-6">
@@ -297,7 +297,7 @@
                                     <div class="hero-1-content"><span class="sub-title" data-ani="slideinup" data-ani-delay="0.2s"><span class="text-theme">Luxury</span> Meets Affordability</span>
                                         <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.4s">Choose the Best Car for You</h1>
                                         <p class="hero-text" data-ani="slideinup" data-ani-delay="0.6s">A car dealership is a business that specializes in selling new or used vehicles to customers. Suitable for any car dealer websites, business websites.</p>
-                                        <div class="btn-group justify-content-center" data-ani="slideinup" data-ani-delay="0.8s"><a href="inventory-listing.html" class="th-btn style2">Go To Listing <i class="fas fa-arrow-up-right"></i></a> <a href="contact.html" class="th-btn style3 text-white">Contact us <i class="fas fa-arrow-up-right"></i></a></div>
+                                        <div class="btn-group justify-content-center" data-ani="slideinup" data-ani-delay="0.8s"><a href="{{ route('inventory.index') }}" class="th-btn style2">Go To Listing <i class="fas fa-arrow-up-right"></i></a> <a href="contact.html" class="th-btn style3 text-white">Contact us <i class="fas fa-arrow-up-right"></i></a></div>
                                     </div>
                                 </div>
                                 <div class="col-xxl-7 col-xl-6 col-lg-6">
@@ -317,7 +317,7 @@
                                     <div class="hero-1-content"><span class="sub-title" data-ani="slideinup" data-ani-delay="0.2s"><span class="text-theme">Luxury</span> Meets Affordability</span>
                                         <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.4s">Drive the Car of Your Dreams</h1>
                                         <p class="hero-text" data-ani="slideinup" data-ani-delay="0.6s">A car dealership is a business that specializes in selling new or used vehicles to customers. Suitable for any car dealer websites, business websites.</p>
-                                        <div class="btn-group justify-content-center" data-ani="slideinup" data-ani-delay="0.8s"><a href="inventory-listing.html" class="th-btn style2">Go To Listing <i class="fas fa-arrow-up-right"></i></a> <a href="contact.html" class="th-btn style3 text-white">Contact us <i class="fas fa-arrow-up-right"></i></a></div>
+                                        <div class="btn-group justify-content-center" data-ani="slideinup" data-ani-delay="0.8s"><a href="{{ route('inventory.index') }}" class="th-btn style2">Go To Listing <i class="fas fa-arrow-up-right"></i></a> <a href="contact.html" class="th-btn style3 text-white">Contact us <i class="fas fa-arrow-up-right"></i></a></div>
                                     </div>
                                 </div>
                                 <div class="col-xxl-7 col-xl-6 col-lg-6">
@@ -471,6 +471,12 @@
             <div class="tab-content" id="myTabContentF1h1">
                 <div class="tab-pane fade show active" id="featured-cars" role="tabpanel" aria-labelledby="featured-cars-tab">
                     <div class="row gy-30 justify-content-center">
+                        @if (isset($featuredVehicles))
+                            @include('partials.vehicle-cards', ['vehicles' => $featuredVehicles, 'viewMode' => 'grid'])
+                            @if ($featuredVehicles->isEmpty())
+                                <div class="col-12"><p class="text-center">Our featured inventory is being updated.</p></div>
+                            @endif
+                        @else
                         <div class="col-xl-3 col-lg-4 col-sm-6">
                             <div class="feature-list-1">
                                 <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-1.jpg') }}" alt="image">
@@ -478,7 +484,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Ford Explorer XLT</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Ford Explorer XLT</a></h3>
                                         <p class="box-text"><span>Listed by:</span> BMW X3 M40i</p>
                                     </div>
                                     <ul class="car-feature">
@@ -495,7 +501,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$17,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$17,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -507,7 +513,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Toyota Corolla LE</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Toyota Corolla LE</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Ford Explorer XLT</p>
                                     </div>
                                     <ul class="car-feature">
@@ -524,7 +530,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$16,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$16,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -536,7 +542,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Honda Civic Sport</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Honda Civic Sport</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Toyota Camry SE</p>
                                     </div>
                                     <ul class="car-feature">
@@ -553,7 +559,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$18,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$18,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -565,7 +571,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Nissan Altima SV</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Nissan Altima SV</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Honda Accord LX</p>
                                     </div>
                                     <ul class="car-feature">
@@ -582,7 +588,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$14,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$14,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -594,7 +600,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Audi Q7 Premium</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Audi Q7 Premium</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Nissan Rogue SV</p>
                                     </div>
                                     <ul class="car-feature">
@@ -611,7 +617,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$11,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$11,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -623,7 +629,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Kia Sorento LX</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Kia Sorento LX</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Audi A4 Quattro</p>
                                     </div>
                                     <ul class="car-feature">
@@ -640,7 +646,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$19,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$19,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -652,7 +658,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">JTesla Model Y</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">JTesla Model Y</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Hyundai Santa Fe</p>
                                     </div>
                                     <ul class="car-feature">
@@ -669,7 +675,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$27,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$27,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -681,7 +687,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Mazda CX-5 Sport</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Mazda CX-5 Sport</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Tesla Model 3</p>
                                     </div>
                                     <ul class="car-feature">
@@ -698,11 +704,12 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$21,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$21,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <div class="tab-pane fade" id="recent-cars" role="tabpanel" aria-labelledby="recent-cars-tab">
@@ -714,7 +721,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Genesis G80 Sport</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Genesis G80 Sport</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Acura TLX Type</p>
                                     </div>
                                     <ul class="car-feature">
@@ -731,7 +738,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$27,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$27,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -743,7 +750,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">BMW X5 MY</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">BMW X5 MY</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Infiniti Q50 Red</p>
                                     </div>
                                     <ul class="car-feature">
@@ -760,7 +767,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$19,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$19,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -772,7 +779,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Kia Sorento LX</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Kia Sorento LX</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Lexus ES 350</p>
                                     </div>
                                     <ul class="car-feature">
@@ -789,7 +796,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$23,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$23,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -801,7 +808,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Ram 1500 Rebel</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Ram 1500 Rebel</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Cadillac XT5 Sport</p>
                                     </div>
                                     <ul class="car-feature">
@@ -818,7 +825,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$21,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$21,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -830,7 +837,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Mazda CX-5 Sport</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Mazda CX-5 Sport</a></h3>
                                         <p class="box-text"><span>Listed by:</span> BMW X3 M40i</p>
                                     </div>
                                     <ul class="car-feature">
@@ -847,7 +854,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$25,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$25,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -859,7 +866,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">JTesla Model Y</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">JTesla Model Y</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Tesla Model 3</p>
                                     </div>
                                     <ul class="car-feature">
@@ -876,7 +883,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$26,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$26,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -888,7 +895,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Ford Explorer XLT</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Ford Explorer XLT</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Ford Explorer XLT</p>
                                     </div>
                                     <ul class="car-feature">
@@ -905,7 +912,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$29,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$29,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -917,7 +924,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">GMC Yukon Denali</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">GMC Yukon Denali</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Hyundai Santa Fe</p>
                                     </div>
                                     <ul class="car-feature">
@@ -934,7 +941,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$17,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$17,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -950,7 +957,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">GMC Yukon Denali</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">GMC Yukon Denali</a></h3>
                                         <p class="box-text"><span>Listed by:</span> BMW X3 M40i</p>
                                     </div>
                                     <ul class="car-feature">
@@ -967,7 +974,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$19,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$19,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -979,7 +986,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Ford Explorer XLT</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Ford Explorer XLT</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Ford Explorer XLT</p>
                                     </div>
                                     <ul class="car-feature">
@@ -996,7 +1003,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$18,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$18,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -1008,7 +1015,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">BMW X5 MY</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">BMW X5 MY</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Tesla Model 3</p>
                                     </div>
                                     <ul class="car-feature">
@@ -1025,7 +1032,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$27,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$27,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -1037,7 +1044,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Toyota Corolla LE</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Toyota Corolla LE</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Honda Accord LX</p>
                                     </div>
                                     <ul class="car-feature">
@@ -1054,7 +1061,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$23,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$23,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -1066,7 +1073,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Genesis G80 Sport</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Genesis G80 Sport</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Hyundai Santa Fe</p>
                                     </div>
                                     <ul class="car-feature">
@@ -1083,7 +1090,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$16,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$16,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -1095,7 +1102,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Ram 1500 Rebel</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Ram 1500 Rebel</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Acura TLX Type</p>
                                     </div>
                                     <ul class="car-feature">
@@ -1112,7 +1119,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$11,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$11,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -1124,7 +1131,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Kia Sorento LX</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Kia Sorento LX</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Lexus ES 350</p>
                                     </div>
                                     <ul class="car-feature">
@@ -1141,7 +1148,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$21,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$21,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -1153,7 +1160,7 @@
                                 </div>
                                 <div class="car-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Honda Civic Sport</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Honda Civic Sport</a></h3>
                                         <p class="box-text"><span>Listed by:</span> Infiniti Q50 Red</p>
                                     </div>
                                     <ul class="car-feature">
@@ -1170,7 +1177,7 @@
                                         </li>
                                     </ul>
                                     <div class="car-bottom">
-                                        <h6 class="box-title">$14,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                        <h6 class="box-title">$14,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -1178,7 +1185,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 mt-5 text-center"><a href="inventory-listing.html" class="th-btn bg-black">View All Listing <i class="fas fa-arrow-up-right"></i></a></div>
+            <div class="col-lg-12 mt-5 text-center"><a href="{{ route('inventory.index') }}" class="th-btn bg-black">View All Listing <i class="fas fa-arrow-up-right"></i></a></div>
         </div>
     </section>
     <div class="brand-area-1 space overflow-hidden">
@@ -1316,7 +1323,7 @@
                                 <div class="car-content">
                                     <h6 class="box-title-price">$156,000.00</h6>
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Range Rover - ZF 2016</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Range Rover - ZF 2016</a></h3>
                                     </div>
                                     <ul class="car-feature">
                                         <li>
@@ -1331,7 +1338,7 @@
                                             <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
                                         </li>
                                     </ul>
-                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="single-inventory.html">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
+                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="{{ route('inventory.index') }}">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
                                 </div>
                             </div>
                         </div>
@@ -1340,7 +1347,7 @@
                                 <div class="car-content">
                                     <h6 class="box-title-price">$146,000.00</h6>
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Ferrari - GZ 2033</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Ferrari - GZ 2033</a></h3>
                                     </div>
                                     <ul class="car-feature">
                                         <li>
@@ -1355,7 +1362,7 @@
                                             <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
                                         </li>
                                     </ul>
-                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="single-inventory.html">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
+                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="{{ route('inventory.index') }}">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
                                 </div>
                             </div>
                         </div>
@@ -1364,7 +1371,7 @@
                                 <div class="car-content">
                                     <h6 class="box-title-price">$136,000.00</h6>
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Toyota Camry SE</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Toyota Camry SE</a></h3>
                                     </div>
                                     <ul class="car-feature">
                                         <li>
@@ -1379,7 +1386,7 @@
                                             <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
                                         </li>
                                     </ul>
-                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="single-inventory.html">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
+                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="{{ route('inventory.index') }}">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
                                 </div>
                             </div>
                         </div>
@@ -1388,7 +1395,7 @@
                                 <div class="car-content">
                                     <h6 class="box-title-price">$166,000.00</h6>
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Audi A4 Quattro</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Audi A4 Quattro</a></h3>
                                     </div>
                                     <ul class="car-feature">
                                         <li>
@@ -1403,7 +1410,7 @@
                                             <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
                                         </li>
                                     </ul>
-                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="single-inventory.html">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
+                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="{{ route('inventory.index') }}">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
                                 </div>
                             </div>
                         </div>
@@ -1412,7 +1419,7 @@
                                 <div class="car-content">
                                     <h6 class="box-title-price">$186,000.00</h6>
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Hyundai Santa Fe</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Hyundai Santa Fe</a></h3>
                                     </div>
                                     <ul class="car-feature">
                                         <li>
@@ -1427,7 +1434,7 @@
                                             <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
                                         </li>
                                     </ul>
-                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="single-inventory.html">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
+                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="{{ route('inventory.index') }}">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
                                 </div>
                             </div>
                         </div>
@@ -1436,7 +1443,7 @@
                                 <div class="car-content">
                                     <h6 class="box-title-price">$196,000.00</h6>
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">BMW X3 M40i</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">BMW X3 M40i</a></h3>
                                     </div>
                                     <ul class="car-feature">
                                         <li>
@@ -1451,7 +1458,7 @@
                                             <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
                                         </li>
                                     </ul>
-                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="single-inventory.html">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
+                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="{{ route('inventory.index') }}">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
                                 </div>
                             </div>
                         </div>
@@ -1460,7 +1467,7 @@
                                 <div class="car-content">
                                     <h6 class="box-title-price">$172,000.00</h6>
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Audi A4 Quattro</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Audi A4 Quattro</a></h3>
                                     </div>
                                     <ul class="car-feature">
                                         <li>
@@ -1475,7 +1482,7 @@
                                             <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
                                         </li>
                                     </ul>
-                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="single-inventory.html">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
+                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="{{ route('inventory.index') }}">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
                                 </div>
                             </div>
                         </div>
@@ -1484,7 +1491,7 @@
                                 <div class="car-content">
                                     <h6 class="box-title-price">$193,000.00</h6>
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">Hyundai Santa Fe</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Hyundai Santa Fe</a></h3>
                                     </div>
                                     <ul class="car-feature">
                                         <li>
@@ -1499,7 +1506,7 @@
                                             <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
                                         </li>
                                     </ul>
-                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="single-inventory.html">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
+                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="{{ route('inventory.index') }}">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
                                 </div>
                             </div>
                         </div>
@@ -1508,7 +1515,7 @@
                                 <div class="car-content">
                                     <h6 class="box-title-price">$182,000.00</h6>
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="single-inventory.html">BMW X3 M40i</a></h3>
+                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">BMW X3 M40i</a></h3>
                                     </div>
                                     <ul class="car-feature">
                                         <li>
@@ -1523,7 +1530,7 @@
                                             <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
                                         </li>
                                     </ul>
-                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="single-inventory.html">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
+                                    <div class="car-bottom justify-content-center"><a class="link-btn" href="{{ route('inventory.index') }}">Select Your Car <i class="fas fa-arrow-up-right"></i></a></div>
                                 </div>
                             </div>
                         </div>
@@ -1626,7 +1633,7 @@
                         </div>
                         <div class="car-content">
                             <div class="media-body">
-                                <h3 class="box-title"><a href="single-inventory.html">Ford Explorer XLT</a></h3>
+                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Ford Explorer XLT</a></h3>
                                 <p class="box-text"><span>Listed by:</span> BMW X3 M40i</p>
                             </div>
                             <ul class="car-feature">
@@ -1643,7 +1650,7 @@
                                 </li>
                             </ul>
                             <div class="car-bottom">
-                                <h6 class="box-title">$17,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                <h6 class="box-title">$17,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1655,7 +1662,7 @@
                         </div>
                         <div class="car-content">
                             <div class="media-body">
-                                <h3 class="box-title"><a href="single-inventory.html">Toyota Corolla LE</a></h3>
+                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Toyota Corolla LE</a></h3>
                                 <p class="box-text"><span>Listed by:</span> Ford Explorer XLT</p>
                             </div>
                             <ul class="car-feature">
@@ -1672,7 +1679,7 @@
                                 </li>
                             </ul>
                             <div class="car-bottom">
-                                <h6 class="box-title">$16,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                <h6 class="box-title">$16,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1684,7 +1691,7 @@
                         </div>
                         <div class="car-content">
                             <div class="media-body">
-                                <h3 class="box-title"><a href="single-inventory.html">Honda Civic Sport</a></h3>
+                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Honda Civic Sport</a></h3>
                                 <p class="box-text"><span>Listed by:</span> Toyota Camry SE</p>
                             </div>
                             <ul class="car-feature">
@@ -1701,7 +1708,7 @@
                                 </li>
                             </ul>
                             <div class="car-bottom">
-                                <h6 class="box-title">$18,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                <h6 class="box-title">$18,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1713,7 +1720,7 @@
                         </div>
                         <div class="car-content">
                             <div class="media-body">
-                                <h3 class="box-title"><a href="single-inventory.html">Nissan Altima SV</a></h3>
+                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Nissan Altima SV</a></h3>
                                 <p class="box-text"><span>Listed by:</span> Honda Accord LX</p>
                             </div>
                             <ul class="car-feature">
@@ -1730,7 +1737,7 @@
                                 </li>
                             </ul>
                             <div class="car-bottom">
-                                <h6 class="box-title">$14,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                <h6 class="box-title">$14,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1748,7 +1755,7 @@
                     </div>
                 </div>
                 <div class="col-lg-auto d-none d-lg-block">
-                    <div class="sec-btn"><a href="inventory-listing.html" class="th-btn bg-black">Explore All Vehicles <i class="fas fa-arrow-up-right"></i></a></div>
+                    <div class="sec-btn"><a href="{{ route('inventory.index') }}" class="th-btn bg-black">Explore All Vehicles <i class="fas fa-arrow-up-right"></i></a></div>
                 </div>
             </div>
         </div>
@@ -1760,7 +1767,7 @@
                             <div class="gallery-card gsap-cursor">
                                 <div class="gallery-img"><img src="{{ asset('assets/img/gallery/gallery-1-1.jpg') }}" alt="gallery image">
                                     <div class="gallery-content">
-                                        <h2 class="box-title"><a href="single-inventory.html">Jeep</a></h2>
+                                        <h2 class="box-title"><a href="{{ route('inventory.index') }}">Jeep</a></h2>
                                         <p class="box-text">22 Vehicles</p>
                                     </div>
                                 </div>
@@ -1770,7 +1777,7 @@
                             <div class="gallery-card gsap-cursor">
                                 <div class="gallery-img"><img src="{{ asset('assets/img/gallery/gallery-1-2.jpg') }}" alt="gallery image">
                                     <div class="gallery-content">
-                                        <h2 class="box-title"><a href="single-inventory.html">Hatchback</a></h2>
+                                        <h2 class="box-title"><a href="{{ route('inventory.index') }}">Hatchback</a></h2>
                                         <p class="box-text">15 Vehicles</p>
                                     </div>
                                 </div>
@@ -1780,7 +1787,7 @@
                             <div class="gallery-card gsap-cursor">
                                 <div class="gallery-img"><img src="{{ asset('assets/img/gallery/gallery-1-3.jpg') }}" alt="gallery image">
                                     <div class="gallery-content">
-                                        <h2 class="box-title"><a href="single-inventory.html">Sedan</a></h2>
+                                        <h2 class="box-title"><a href="{{ route('inventory.index') }}">Sedan</a></h2>
                                         <p class="box-text">21 Vehicles</p>
                                     </div>
                                 </div>
@@ -1790,7 +1797,7 @@
                             <div class="gallery-card gsap-cursor">
                                 <div class="gallery-img"><img src="{{ asset('assets/img/gallery/gallery-1-4.jpg') }}" alt="gallery image">
                                     <div class="gallery-content">
-                                        <h2 class="box-title"><a href="single-inventory.html">Compact</a></h2>
+                                        <h2 class="box-title"><a href="{{ route('inventory.index') }}">Compact</a></h2>
                                         <p class="box-text">11 Vehicles</p>
                                     </div>
                                 </div>
@@ -1800,7 +1807,7 @@
                             <div class="gallery-card gsap-cursor">
                                 <div class="gallery-img"><img src="{{ asset('assets/img/gallery/gallery-1-5.jpg') }}" alt="gallery image">
                                     <div class="gallery-content">
-                                        <h2 class="box-title"><a href="single-inventory.html">SUV</a></h2>
+                                        <h2 class="box-title"><a href="{{ route('inventory.index') }}">SUV</a></h2>
                                         <p class="box-text">22 Vehicles</p>
                                     </div>
                                 </div>
@@ -1810,7 +1817,7 @@
                             <div class="gallery-card gsap-cursor">
                                 <div class="gallery-img"><img src="{{ asset('assets/img/gallery/gallery-1-6.jpg') }}" alt="gallery image">
                                     <div class="gallery-content">
-                                        <h2 class="box-title"><a href="single-inventory.html">Toyota</a></h2>
+                                        <h2 class="box-title"><a href="{{ route('inventory.index') }}">Toyota</a></h2>
                                         <p class="box-text">25 Vehicles</p>
                                     </div>
                                 </div>
@@ -1820,7 +1827,7 @@
                             <div class="gallery-card gsap-cursor">
                                 <div class="gallery-img"><img src="{{ asset('assets/img/gallery/gallery-1-7.jpg') }}" alt="gallery image">
                                     <div class="gallery-content">
-                                        <h2 class="box-title"><a href="single-inventory.html">Mercedes</a></h2>
+                                        <h2 class="box-title"><a href="{{ route('inventory.index') }}">Mercedes</a></h2>
                                         <p class="box-text">25 Vehicles</p>
                                     </div>
                                 </div>
@@ -1830,7 +1837,7 @@
                             <div class="gallery-card gsap-cursor">
                                 <div class="gallery-img"><img src="{{ asset('assets/img/gallery/gallery-1-8.jpg') }}" alt="gallery image">
                                     <div class="gallery-content">
-                                        <h2 class="box-title"><a href="single-inventory.html">Hyundai</a></h2>
+                                        <h2 class="box-title"><a href="{{ route('inventory.index') }}">Hyundai</a></h2>
                                         <p class="box-text">04 Vehicles</p>
                                     </div>
                                 </div>
@@ -1840,7 +1847,7 @@
                             <div class="gallery-card gsap-cursor">
                                 <div class="gallery-img"><img src="{{ asset('assets/img/gallery/gallery-1-9.jpg') }}" alt="gallery image">
                                     <div class="gallery-content">
-                                        <h2 class="box-title"><a href="single-inventory.html">Subaru</a></h2>
+                                        <h2 class="box-title"><a href="{{ route('inventory.index') }}">Subaru</a></h2>
                                         <p class="box-text">50 Vehicles</p>
                                     </div>
                                 </div>
@@ -1850,7 +1857,7 @@
                             <div class="gallery-card gsap-cursor">
                                 <div class="gallery-img"><img src="{{ asset('assets/img/gallery/gallery-1-1.jpg') }}" alt="gallery image">
                                     <div class="gallery-content">
-                                        <h2 class="box-title"><a href="single-inventory.html">Cadillac</a></h2>
+                                        <h2 class="box-title"><a href="{{ route('inventory.index') }}">Cadillac</a></h2>
                                         <p class="box-text">25 Vehicles</p>
                                     </div>
                                 </div>
@@ -1860,7 +1867,7 @@
                             <div class="gallery-card gsap-cursor">
                                 <div class="gallery-img"><img src="{{ asset('assets/img/gallery/gallery-1-2.jpg') }}" alt="gallery image">
                                     <div class="gallery-content">
-                                        <h2 class="box-title"><a href="single-inventory.html">Tesla</a></h2>
+                                        <h2 class="box-title"><a href="{{ route('inventory.index') }}">Tesla</a></h2>
                                         <p class="box-text">33 Vehicles</p>
                                     </div>
                                 </div>
@@ -1870,7 +1877,7 @@
                             <div class="gallery-card gsap-cursor">
                                 <div class="gallery-img"><img src="{{ asset('assets/img/gallery/gallery-1-3.jpg') }}" alt="gallery image">
                                     <div class="gallery-content">
-                                        <h2 class="box-title"><a href="single-inventory.html">Genesis</a></h2>
+                                        <h2 class="box-title"><a href="{{ route('inventory.index') }}">Genesis</a></h2>
                                         <p class="box-text">09 Vehicles</p>
                                     </div>
                                 </div>
@@ -2090,7 +2097,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Toyota Camry SE</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Toyota Camry SE</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2108,7 +2115,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$19,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$19,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2120,7 +2127,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Ford Explorer XLT</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Ford Explorer XLT</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2138,7 +2145,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$17,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$17,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2154,7 +2161,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Audi A4 Quattro</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Audi A4 Quattro</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2172,7 +2179,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$16,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$16,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2184,7 +2191,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Nissan Rogue SV</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Nissan Rogue SV</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2202,7 +2209,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$20,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$20,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2218,7 +2225,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Acura TLX Type</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Acura TLX Type</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2236,7 +2243,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$21,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$21,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2248,7 +2255,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Hyundai Santa Fe</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Hyundai Santa Fe</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2266,7 +2273,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$23,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$23,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2282,7 +2289,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Audi A4 Quattro</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Audi A4 Quattro</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2300,7 +2307,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$16,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$16,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2312,7 +2319,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Nissan Rogue SV</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Nissan Rogue SV</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2330,7 +2337,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$20,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$20,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2346,7 +2353,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Acura TLX Type</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Acura TLX Type</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2364,7 +2371,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$21,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$21,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2376,7 +2383,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Hyundai Santa Fe</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Hyundai Santa Fe</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2394,7 +2401,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$23,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$23,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2410,7 +2417,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Toyota Camry SE</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Toyota Camry SE</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2428,7 +2435,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$19,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$19,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2440,7 +2447,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Ford Explorer XLT</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Ford Explorer XLT</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2458,7 +2465,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$17,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$17,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2474,7 +2481,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Audi A4 Quattro</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Audi A4 Quattro</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2492,7 +2499,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$16,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$16,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2504,7 +2511,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Nissan Rogue SV</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Nissan Rogue SV</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2522,7 +2529,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$20,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$20,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2538,7 +2545,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Acura TLX Type</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Acura TLX Type</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2556,7 +2563,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$21,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$21,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2568,7 +2575,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Hyundai Santa Fe</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Hyundai Santa Fe</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2586,7 +2593,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$23,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$23,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2602,7 +2609,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Toyota Camry SE</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Toyota Camry SE</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2620,7 +2627,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$19,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$19,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2632,7 +2639,7 @@
                                         </div>
                                         <div class="car-content">
                                             <div class="media-body">
-                                                <h3 class="box-title"><a href="single-inventory.html">Ford Explorer XLT</a></h3>
+                                                <h3 class="box-title"><a href="{{ route('inventory.index') }}">Ford Explorer XLT</a></h3>
                                                 <p class="box-desc">Engage in a detailed consultation to determine the type of vehicle the customer.</p>
                                                 <p class="box-text"><span>Listed by:</span> Motor lane Automotive</p>
                                             </div>
@@ -2650,7 +2657,7 @@
                                                 </li>
                                             </ul>
                                             <div class="car-bottom">
-                                                <h6 class="box-title">$17,000</h6><a class="th-btn sm style3" href="single-inventory.html">View Details <i class="fas fa-arrow-up-right"></i></a>
+                                                <h6 class="box-title">$17,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2769,7 +2776,7 @@
                 <div class="footer-top-border">
                     <div class="row gy-4 justify-content-between">
                         <div class="col-lg-3">
-                            <div class="logo-top"><a href="/"><span class="logo-text">KONASTONE</span></a></div>
+                            <div class="logo-top"><a href="/"><img src="{{ asset('assets/img/konastone-logo.svg') }}" alt="Konastone Autos and Imports"></a></div>
                         </div>
                         <div class="col-lg-9">
                             <div class="payment-wrap">
@@ -2830,12 +2837,12 @@
                             <h3 class="widget_title">Vehicles List</h3>
                             <div class="menu-all-pages-container">
                                 <ul class="menu">
-                                    <li><a href="inventory-listing.html">Sedan</a></li>
-                                    <li><a href="inventory-listing.html">Hatchback</a></li>
-                                    <li><a href="inventory-listing.html">SUV</a></li>
-                                    <li><a href="inventory-listing.html">Hybrid</a></li>
-                                    <li><a href="inventory-listing.html">Convertible</a></li>
-                                    <li><a href="inventory-listing.html">Coupe</a></li>
+                                    <li><a href="{{ route('inventory.index') }}">Sedan</a></li>
+                                    <li><a href="{{ route('inventory.index') }}">Hatchback</a></li>
+                                    <li><a href="{{ route('inventory.index') }}">SUV</a></li>
+                                    <li><a href="{{ route('inventory.index') }}">Hybrid</a></li>
+                                    <li><a href="{{ route('inventory.index') }}">Convertible</a></li>
+                                    <li><a href="{{ route('inventory.index') }}">Coupe</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -2845,12 +2852,12 @@
                             <h3 class="widget_title">Our Brand</h3>
                             <div class="menu-all-pages-container">
                                 <ul class="menu">
-                                    <li><a href="inventory-listing.html">Toyota</a></li>
-                                    <li><a href="inventory-listing.html">Audi</a></li>
-                                    <li><a href="inventory-listing.html">BMW</a></li>
-                                    <li><a href="inventory-listing.html">Ferrari</a></li>
-                                    <li><a href="inventory-listing.html">Nissan</a></li>
-                                    <li><a href="inventory-listing.html">Ford</a></li>
+                                    <li><a href="{{ route('inventory.index') }}">Toyota</a></li>
+                                    <li><a href="{{ route('inventory.index') }}">Audi</a></li>
+                                    <li><a href="{{ route('inventory.index') }}">BMW</a></li>
+                                    <li><a href="{{ route('inventory.index') }}">Ferrari</a></li>
+                                    <li><a href="{{ route('inventory.index') }}">Nissan</a></li>
+                                    <li><a href="{{ route('inventory.index') }}">Ford</a></li>
                                 </ul>
                             </div>
                         </div>

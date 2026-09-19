@@ -5,7 +5,7 @@
 @section('canonical', url('/'))
 @section('og_title', 'Konastone Autos and Imports')
 @section('og_description', 'Konastone Autos and Imports - Dealer in quality and premium cars.')
-@section('og_image', asset('assets/img/hero/hero_1_1.png'))
+@section('og_image', asset('assets/img/konastone-logo.svg'))
 @section('body-class', 'page-no-scroll')
 
 @section('page-sections')
