@@ -624,15 +624,14 @@
                         <option
                           value=""
                           disabled="disabled"
-                          selected="selected"
+                          @selected(blank($filters['brand'] ?? null))
                           hidden
                         >
                           Select Make
                         </option>
-                        <option value="Toyota">Toyota</option>
-                        <option value="Honda">Honda</option>
-                        <option value="Ford">Ford</option>
-                        <option value="BMW">BMW</option>
+                        @foreach ($filterOptions['brands'] as $slug => $name)
+                          <option value="{{ $slug }}" @selected(($filters['brand'] ?? null) === $slug)>{{ $name }}</option>
+                        @endforeach
                       </select>
                     </div>
                     <div class="form-group">
@@ -644,15 +643,14 @@
                         <option
                           value=""
                           disabled="disabled"
-                          selected="selected"
+                          @selected(blank($filters['model'] ?? null))
                           hidden
                         >
                           Select Model
                         </option>
-                        <option value="Corolla">Corolla</option>
-                        <option value="Civic">Civic</option>
-                        <option value="Mustang">Mustang</option>
-                        <option value="X3">X3</option>
+                        @foreach ($filterOptions['models'] as $model)
+                          <option value="{{ $model }}" @selected(($filters['model'] ?? null) === $model)>{{ $model }}</option>
+                        @endforeach
                       </select>
                     </div>
                     <div class="form-group">
@@ -664,15 +662,14 @@
                         <option
                           value=""
                           disabled="disabled"
-                          selected="selected"
+                          @selected(blank($filters['exterior_color'] ?? null))
                           hidden
                         >
                           Select Color
                         </option>
-                        <option value="Pearl White">Pearl White</option>
-                        <option value="Obsidian Black">Obsidian Black</option>
-                        <option value="Silver">Silver</option>
-                        <option value="Deep Blue">Deep Blue</option>
+                        @foreach ($filterOptions['colors'] as $color)
+                          <option value="{{ $color }}" @selected(($filters['exterior_color'] ?? null) === $color)>{{ $color }}</option>
+                        @endforeach
                       </select>
                     </div>
                     <div class="form-group">
@@ -684,15 +681,14 @@
                         <option
                           value=""
                           disabled="disabled"
-                          selected="selected"
+                          @selected(blank($filters['body_type'] ?? null))
                           hidden
                         >
                           Select Body
                         </option>
-                        <option value="Sedan">Sedan</option>
-                        <option value="SUV">SUV</option>
-                        <option value="Truck">Truck</option>
-                        <option value="Hatchback">Hatchback</option>
+                        @foreach ($filterOptions['body_types'] as $bodyType)
+                          <option value="{{ $bodyType }}" @selected(($filters['body_type'] ?? null) === $bodyType)>{{ ucfirst($bodyType) }}</option>
+                        @endforeach
                       </select>
                     </div>
                     <div class="advance-btn-wrapper">
@@ -712,7 +708,8 @@
             <div class="advance-search-wrapper stye-2 home-4-style">
               <div class="form-group">
                 <select
-                  name="select_make"
+                  name="drivetrain"
+                  form="inventory-search"
                   id="select_make1-drive"
                   class="form-select nice-select"
                 >
@@ -724,16 +721,16 @@
                   >
                     Drive Type
                   </option>
-                  <option value="Toyota">Toyota</option>
-                  <option value="Toyota">FWD – Front-wheel drive</option>
-                  <option value="Honda">AWD – All-wheel drive</option>
-                  <option value="Ford">AWD – All-wheel drive</option>
-                  <option value="BMW">4WD – Four-wheel drive</option>
+                  <option value="2wd">2WD</option>
+                  <option value="fwd">FWD – Front-wheel drive</option>
+                  <option value="awd">AWD – All-wheel drive</option>
+                  <option value="4wd">4WD – Four-wheel drive</option>
                 </select>
               </div>
               <div class="form-group">
                 <select
-                  name="select_make"
+                  name="transmission"
+                  form="inventory-search"
                   id="select_make2-trans"
                   class="form-select nice-select"
                 >
@@ -745,15 +742,16 @@
                   >
                     Transmission
                   </option>
-                  <option value="Corolla">CVT</option>
-                  <option value="Civic">Automatic</option>
-                  <option value="Mustang">DCT</option>
-                  <option value="X3">Manual</option>
+                  <option value="cvt">CVT</option>
+                  <option value="automatic">Automatic</option>
+                  <option value="dct">DCT</option>
+                  <option value="manual">Manual</option>
                 </select>
               </div>
               <div class="form-group">
                 <select
-                  name="select_make"
+                  name="fuel_type"
+                  form="inventory-search"
                   id="select_Fuel_type"
                   class="form-select nice-select"
                 >
@@ -765,24 +763,25 @@
                   >
                     Fuel Type
                   </option>
-                  <option value="Diesel">Diesel</option>
-                  <option value="Electric">Electric</option>
-                  <option value="Gasoline">Gasoline</option>
-                  <option value="Petrol">Petrol</option>
+                  <option value="diesel">Diesel</option>
+                  <option value="electric">Electric</option>
+                  <option value="hybrid">Hybrid</option>
+                  <option value="petrol">Petrol</option>
                 </select>
               </div>
               <div class="form-group">
                 <div class="price_slider_wrapper">
-                  <p>Price</p>
-                  <div class="price_slider"></div>
-                  <div class="price_label">
-                    <span class="from">$0</span> <span class="to">$70</span>
+                  <p>Price (KSh)</p>
+                  <div class="row g-2">
+                    <div class="col-6"><input class="form-control" type="number" name="min_price" form="inventory-search" min="0" step="1" value="{{ $filters['min_price'] ?? '' }}" placeholder="Min"></div>
+                    <div class="col-6"><input class="form-control" type="number" name="max_price" form="inventory-search" min="0" step="1" value="{{ $filters['max_price'] ?? '' }}" placeholder="Max"></div>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <select
-                  name="select_make"
+                  name="cylinders"
+                  form="inventory-search"
                   id="select_Cylinders"
                   class="form-select nice-select"
                 >
@@ -794,15 +793,19 @@
                   >
                     Cylinders
                   </option>
-                  <option value="10">10</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="6">6</option>
                   <option value="5">5</option>
                   <option value="8">8</option>
+                  <option value="10">10</option>
                   <option value="12">12</option>
                 </select>
               </div>
               <div class="form-group">
                 <select
-                  name="select_make"
+                  name="doors"
+                  form="inventory-search"
                   id="select_Door"
                   class="form-select nice-select"
                 >
@@ -815,14 +818,16 @@
                     Door
                   </option>
                   <option value="2">2</option>
-                  <option value="3">4</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
                   <option value="5">5</option>
                   <option value="6">6</option>
                 </select>
               </div>
               <div class="form-group">
                 <select
-                  name="select_make"
+                  name="min_year"
+                  form="inventory-search"
                   id="select_year"
                   class="form-select nice-select"
                 >
@@ -834,12 +839,9 @@
                   >
                     Year
                   </option>
-                  <option value="2015">2015</option>
-                  <option value="2016">2016</option>
-                  <option value="2017">2017</option>
-                  <option value="2018">2018</option>
-                  <option value="2020">2020</option>
-                  <option value="2024">2024</option>
+                  @for ($year = now()->year + 1; $year >= 2000; $year--)
+                    <option value="{{ $year }}" @selected(($filters['min_year'] ?? null) == $year)>{{ $year }}</option>
+                  @endfor
                 </select>
               </div>
             </div>
@@ -856,22 +858,22 @@
               <div class="filter-search">
                 <div class="form-group">
                   <select
-                    name="select_make"
+                    name="sort"
+                    form="inventory-search"
                     id="select_makeh42"
                     class="form-select nice-select"
                   >
                     <option
-                      value=""
-                      disabled="disabled"
-                      selected="selected"
+                      value="newest"
+                      @selected(($filters['sort'] ?? 'newest') === 'newest')
                       hidden
                     >
                       Short By Latest
                     </option>
-                    <option value="Corolla">Newest First</option>
-                    <option value="Civic">Oldest First</option>
-                    <option value="Mustang">Height First</option>
-                    <option value="X3">Mileage Highest</option>
+                    <option value="price_low" @selected(($filters['sort'] ?? null) === 'price_low')>Price: Low to high</option>
+                    <option value="price_high" @selected(($filters['sort'] ?? null) === 'price_high')>Price: High to low</option>
+                    <option value="year" @selected(($filters['sort'] ?? null) === 'year')>Newest model year</option>
+                    <option value="mileage" @selected(($filters['sort'] ?? null) === 'mileage')>Lowest mileage</option>
                   </select>
                 </div>
                 <div class="icon-item">

@@ -69,6 +69,8 @@ class VehicleSeeder extends Seeder
                     'condition' => $condition,
                     'engine' => $fuel === 'diesel' ? '2.8L Diesel' : '2.0L Petrol',
                     'engine_capacity' => $fuel === 'diesel' ? 2800 : 2000,
+                    'cylinders' => $fuel === 'diesel' ? 6 : 4,
+                    'doors' => 5,
                     'fuel_type' => $fuel,
                     'transmission' => 'automatic',
                     'drivetrain' => $drivetrain,

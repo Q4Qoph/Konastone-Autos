@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Carbon;
 
-#[Fillable(['brand_id', 'model', 'trim', 'slug', 'year', 'condition', 'stock_number', 'chassis_number', 'engine', 'engine_capacity', 'fuel_type', 'transmission', 'drivetrain', 'body_type', 'mileage', 'exterior_color', 'interior_color', 'price', 'previous_price', 'currency', 'description', 'location', 'status', 'is_featured', 'is_negotiable', 'financing_available', 'published_at', 'sold_at'])]
+#[Fillable(['brand_id', 'model', 'trim', 'slug', 'year', 'condition', 'stock_number', 'chassis_number', 'engine', 'engine_capacity', 'cylinders', 'doors', 'fuel_type', 'transmission', 'drivetrain', 'body_type', 'mileage', 'exterior_color', 'interior_color', 'price', 'previous_price', 'currency', 'description', 'location', 'status', 'is_featured', 'is_negotiable', 'financing_available', 'published_at', 'sold_at'])]
 class Vehicle extends Model
 {
     /** @use HasFactory<VehicleFactory> */
@@ -58,6 +58,11 @@ class Vehicle extends Model
         return $this->hasMany(VehicleFeature::class)->orderBy('name');
     }
 
+    public function auditLogs(): HasMany
+    {
+        return $this->hasMany(AuditLog::class)->latest();
+    }
+
     public function scopeAvailable(Builder $query): void
     {
         $query->where('status', VehicleStatus::Available->value);
@@ -71,5 +76,11 @@ class Vehicle extends Model
     public function scopePublished(Builder $query): void
     {
         $query->whereNotNull('published_at')->where('published_at', '<=', Carbon::now());
+    }
+
+    public function hasMinimumPublicGallery(int $minimum = 4): bool
+    {
+        return $this->images()->count() >= $minimum
+            && $this->images()->where('is_cover', true)->exists();
     }
 }

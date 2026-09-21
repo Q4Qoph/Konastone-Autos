@@ -144,7 +144,7 @@
                             <li><a href="blog-details.html">Blog Details</a></li>
                         </ul>
                     </li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="{{ route('contact') }}">Contact Us</a></li>
                 </ul>
             </div>
         </div>
@@ -253,7 +253,7 @@
                                             <li><a href="blog-details.html">Blog Details</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    <li><a href="{{ route('contact') }}">Contact Us</a></li>
                                 </ul>
                             </nav><button type="button" class="th-menu-toggle d-block d-lg-none"><i class="far fa-bars"></i></button>
                         </div>
@@ -277,7 +277,7 @@
                                     <div class="hero-1-content"><span class="sub-title" data-ani="slideinup" data-ani-delay="0.2s"><span class="text-theme">Luxury</span> Meets Affordability</span>
                                         <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.4s">Find Your Perfect Car For Drive</h1>
                                         <p class="hero-text" data-ani="slideinup" data-ani-delay="0.6s">A car dealership is a business that specializes in selling new or used vehicles to customers. Suitable for any car dealer websites, business websites.</p>
-                                        <div class="btn-group justify-content-center" data-ani="slideinup" data-ani-delay="0.8s"><a href="{{ route('inventory.index') }}" class="th-btn style2">Go To Listing <i class="fas fa-arrow-up-right"></i></a> <a href="contact.html" class="th-btn style3 text-white">Contact us <i class="fas fa-arrow-up-right"></i></a></div>
+                                        <div class="btn-group justify-content-center" data-ani="slideinup" data-ani-delay="0.8s"><a href="{{ route('inventory.index') }}" class="th-btn style2">Go To Listing <i class="fas fa-arrow-up-right"></i></a> <a href="{{ route('contact') }}" class="th-btn style3 text-white">Contact us <i class="fas fa-arrow-up-right"></i></a></div>
                                     </div>
                                 </div>
                                 <div class="col-xxl-7 col-xl-6 col-lg-6">
@@ -297,7 +297,7 @@
                                     <div class="hero-1-content"><span class="sub-title" data-ani="slideinup" data-ani-delay="0.2s"><span class="text-theme">Luxury</span> Meets Affordability</span>
                                         <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.4s">Choose the Best Car for You</h1>
                                         <p class="hero-text" data-ani="slideinup" data-ani-delay="0.6s">A car dealership is a business that specializes in selling new or used vehicles to customers. Suitable for any car dealer websites, business websites.</p>
-                                        <div class="btn-group justify-content-center" data-ani="slideinup" data-ani-delay="0.8s"><a href="{{ route('inventory.index') }}" class="th-btn style2">Go To Listing <i class="fas fa-arrow-up-right"></i></a> <a href="contact.html" class="th-btn style3 text-white">Contact us <i class="fas fa-arrow-up-right"></i></a></div>
+                                        <div class="btn-group justify-content-center" data-ani="slideinup" data-ani-delay="0.8s"><a href="{{ route('inventory.index') }}" class="th-btn style2">Go To Listing <i class="fas fa-arrow-up-right"></i></a> <a href="{{ route('contact') }}" class="th-btn style3 text-white">Contact us <i class="fas fa-arrow-up-right"></i></a></div>
                                     </div>
                                 </div>
                                 <div class="col-xxl-7 col-xl-6 col-lg-6">
@@ -317,7 +317,7 @@
                                     <div class="hero-1-content"><span class="sub-title" data-ani="slideinup" data-ani-delay="0.2s"><span class="text-theme">Luxury</span> Meets Affordability</span>
                                         <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.4s">Drive the Car of Your Dreams</h1>
                                         <p class="hero-text" data-ani="slideinup" data-ani-delay="0.6s">A car dealership is a business that specializes in selling new or used vehicles to customers. Suitable for any car dealer websites, business websites.</p>
-                                        <div class="btn-group justify-content-center" data-ani="slideinup" data-ani-delay="0.8s"><a href="{{ route('inventory.index') }}" class="th-btn style2">Go To Listing <i class="fas fa-arrow-up-right"></i></a> <a href="contact.html" class="th-btn style3 text-white">Contact us <i class="fas fa-arrow-up-right"></i></a></div>
+                                        <div class="btn-group justify-content-center" data-ani="slideinup" data-ani-delay="0.8s"><a href="{{ route('inventory.index') }}" class="th-btn style2">Go To Listing <i class="fas fa-arrow-up-right"></i></a> <a href="{{ route('contact') }}" class="th-btn style3 text-white">Contact us <i class="fas fa-arrow-up-right"></i></a></div>
                                     </div>
                                 </div>
                                 <div class="col-xxl-7 col-xl-6 col-lg-6">
@@ -2827,7 +2827,7 @@
                                     <li><a href="team.html">Our Services</a></li>
                                     <li><a href="service.html">Our Services</a></li>
                                     <li><a href="shop.html">Shop</a></li>
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    <li><a href="{{ route('contact') }}">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>

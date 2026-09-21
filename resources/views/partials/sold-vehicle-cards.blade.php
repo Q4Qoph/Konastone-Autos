@@ -1,7 +1,7 @@
 @foreach ($vehicles as $vehicle)
     @php
-        $image = $vehicle->coverImage?->path ?? 'img/featured/featured-1-1.jpg';
-        $imageUrl = str_starts_with($image, 'img/') ? asset('assets/'.$image) : asset('storage/'.$image);
+        $image = $vehicle->coverImage ?? $vehicle->images->first();
+        $imageUrl = $image?->url('card') ?? asset('assets/img/featured/featured-1-1.jpg');
     @endphp
     <div class="col-xxl-4 col-xl-6 col-lg-6 col-sm-6">
         <div class="feature-list-1 sold">

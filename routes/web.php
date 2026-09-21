@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\VehicleStatus;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\VehicleController;
 use App\Models\Vehicle;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,7 +13,7 @@ Route::get('/', function () {
 
     if (Schema::hasTable('vehicles')) {
         $featuredVehicles = Vehicle::query()
-            ->with(['brand', 'coverImage'])
+            ->with(['brand', 'coverImage', 'images'])
             ->where('is_featured', true)
             ->where('status', VehicleStatus::Available->value)
             ->whereHas('brand', fn (Builder $query) => $query->where('is_active', true))
@@ -42,3 +43,6 @@ Route::view('/finance-calculator', 'pages.finance-calculator')
 
 Route::view('/sell-a-car', 'pages.sell-a-car')
     ->name('sell.car');
+
+Route::get('/contact', [ContactController::class, 'create'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->middleware('throttle:contact')->name('contact.store');

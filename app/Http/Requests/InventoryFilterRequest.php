@@ -22,6 +22,8 @@ class InventoryFilterRequest extends FormRequest
             'model' => ['nullable', 'string', 'max:100'],
             'condition' => ['nullable', Rule::in(['foreign_used', 'locally_used'])],
             'body_type' => ['nullable', 'string', 'max:50'],
+            'cylinders' => ['nullable', 'integer', 'between:1,16'],
+            'doors' => ['nullable', 'integer', 'between:1,8'],
             'drivetrain' => ['nullable', Rule::in(['2wd', '4wd', 'awd', 'fwd', 'rwd'])],
             'transmission' => ['nullable', Rule::in(['automatic', 'manual', 'cvt', 'dct'])],
             'fuel_type' => ['nullable', Rule::in(['petrol', 'diesel', 'hybrid', 'electric'])],

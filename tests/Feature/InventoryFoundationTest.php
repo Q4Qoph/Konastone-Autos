@@ -64,6 +64,8 @@ class InventoryFoundationTest extends TestCase
         $vehicle = Vehicle::factory()->for($brand)->create([
             'model' => 'Harrier Dynamic',
             'year' => 2022,
+            'cylinders' => 6,
+            'doors' => 5,
             'price' => 4567000,
             'description' => 'A database-backed vehicle description.',
             'status' => VehicleStatus::Available,
@@ -92,6 +94,9 @@ class InventoryFoundationTest extends TestCase
             ->assertSee('A database-backed vehicle description.')
             ->assertSee('KSh 4,567,000')
             ->assertSee('Reverse camera')
+            ->assertSee('Cylinders')
+            ->assertSee('6')
+            ->assertSee('Door')
             ->assertSee('Related Dynamic')
             ->assertDontSee('Sold Related Dynamic')
             ->assertSee(route('inventory.show', $relatedVehicle));

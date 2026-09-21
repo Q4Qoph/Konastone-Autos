@@ -1,7 +1,7 @@
 @foreach ($relatedVehicles as $relatedVehicle)
     @php
-        $image = $relatedVehicle->coverImage?->path ?? 'img/featured/featured-1-1.jpg';
-        $imageUrl = str_starts_with($image, 'img/') ? asset('assets/'.$image) : asset('storage/'.$image);
+        $image = $relatedVehicle->coverImage ?? $relatedVehicle->images->first();
+        $imageUrl = $image?->url('card') ?? asset('assets/img/featured/featured-1-1.jpg');
     @endphp
     <div class="swiper-slide">
         <div class="feature-list-1">

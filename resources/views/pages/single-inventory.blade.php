@@ -568,7 +568,7 @@
 <div class="th-container">
 <div class="single-inventory-wrapper">
 @forelse ($vehicle->images as $image)
-@php($imageUrl = str_starts_with($image->path, 'img/') ? asset('assets/'.$image->path) : asset('storage/'.$image->path))
+@php($imageUrl = $image->url('detail'))
 <div class="single-inventory-item {{ $loop->iteration === min(3, $vehicle->images->count()) ? 'active' : '' }}" data-bg-src="{{ $imageUrl }}">
 <div class="single-inventory-img">
 <div class="single-inventory-item-content">
@@ -718,7 +718,18 @@
 <p>Door</p>
 </div>
 <div class="right">
-<p>{{ $vehicle->trim ?: 'Not listed' }}</p>
+<p>{{ $vehicle->doors ?: 'Not listed' }}</p>
+</div>
+</div>
+<div class="overview-item">
+<div class="left">
+<div class="icon">
+<img src="{{ asset('assets/img/icon/inventory-details-1-8.svg') }}" alt="icon">
+</div>
+<p>Cylinders</p>
+</div>
+<div class="right">
+<p>{{ $vehicle->cylinders ?: 'Not listed' }}</p>
 </div>
 </div>
 <div class="overview-item">

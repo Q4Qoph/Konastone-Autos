@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\VehicleStatus;
 use App\Http\Requests\InventoryFilterRequest;
+use App\Models\Brand;
 use App\Models\Vehicle;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
@@ -67,6 +68,8 @@ class VehicleController extends Controller
         $query->when(filled($filters['condition'] ?? null), fn (Builder $q) => $q->where('condition', $filters['condition']));
         $query->when(filled($filters['exterior_color'] ?? null), fn (Builder $q) => $q->where('exterior_color', $filters['exterior_color']));
         $query->when(filled($filters['body_type'] ?? null), fn (Builder $q) => $q->where('body_type', str($filters['body_type'])->lower()));
+        $query->when(filled($filters['cylinders'] ?? null), fn (Builder $q) => $q->where('cylinders', $filters['cylinders']));
+        $query->when(filled($filters['doors'] ?? null), fn (Builder $q) => $q->where('doors', $filters['doors']));
         $query->when(filled($filters['drivetrain'] ?? null), fn (Builder $q) => $q->where('drivetrain', $filters['drivetrain']));
         $query->when(filled($filters['transmission'] ?? null), fn (Builder $q) => $q->where('transmission', $filters['transmission']));
         $query->when(filled($filters['fuel_type'] ?? null), fn (Builder $q) => $q->where('fuel_type', $filters['fuel_type']));
@@ -88,13 +91,46 @@ class VehicleController extends Controller
             'vehicles' => $query->paginate(12)->withQueryString(),
             'viewMode' => $viewMode,
             'filters' => $filters,
+            'filterOptions' => $this->filterOptions(),
         ]);
+    }
+
+    /**
+     * @return array{brands: array<string, string>, models: array<int, string>, colors: array<int, string>, body_types: array<int, string>}
+     */
+    private function filterOptions(): array
+    {
+        return [
+            'brands' => Brand::query()
+                ->where('is_active', true)
+                ->orderBy('name')
+                ->pluck('name', 'slug')
+                ->all(),
+            'models' => Vehicle::query()
+                ->whereNotNull('model')
+                ->distinct()
+                ->orderBy('model')
+                ->pluck('model')
+                ->all(),
+            'colors' => Vehicle::query()
+                ->whereNotNull('exterior_color')
+                ->distinct()
+                ->orderBy('exterior_color')
+                ->pluck('exterior_color')
+                ->all(),
+            'body_types' => Vehicle::query()
+                ->whereNotNull('body_type')
+                ->distinct()
+                ->orderBy('body_type')
+                ->pluck('body_type')
+                ->all(),
+        ];
     }
 
     private function baseQuery(): Builder
     {
         return Vehicle::query()
-            ->with(['brand', 'coverImage'])
+            ->with(['brand', 'coverImage', 'images'])
             ->whereHas('brand', fn (Builder $query) => $query->where('is_active', true))
             ->published();
     }

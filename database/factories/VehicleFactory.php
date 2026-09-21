@@ -30,6 +30,8 @@ class VehicleFactory extends Factory
             'chassis_number' => null,
             'engine' => fake()->randomElement(['2.8L Diesel', '2.5L Petrol', '2.0L Turbo']),
             'engine_capacity' => fake()->randomElement([2000, 2500, 2800, 3000]),
+            'cylinders' => fake()->randomElement([4, 6, 8]),
+            'doors' => 5,
             'fuel_type' => fake()->randomElement(['petrol', 'diesel', 'hybrid']),
             'transmission' => 'automatic',
             'drivetrain' => fake()->randomElement(['2wd', 'awd', '4wd']),
