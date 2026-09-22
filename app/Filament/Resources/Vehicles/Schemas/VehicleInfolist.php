@@ -20,11 +20,10 @@ class VehicleInfolist
                         ImageEntry::make('gallery')
                             ->label('Vehicle images')
                             ->state(fn (Vehicle $record): array => $record->images
+                                ->take(5)
                                 ->map(fn (VehicleImage $image): string => $image->url('detail'))
                                 ->all())
                             ->imageSize(180)
-                            ->limit(12)
-                            ->limitedRemainingText()
                             ->columnSpanFull(),
                     ])
                     ->columnSpanFull(),

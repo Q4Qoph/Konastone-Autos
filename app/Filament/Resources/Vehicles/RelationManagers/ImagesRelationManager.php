@@ -64,10 +64,10 @@ class ImagesRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('path')
             ->columns([
-                ImageColumn::make('path')
-                    ->label('Preview')
+                ImageColumn::make('image_preview')
+                    ->label('Image')
                     ->state(fn (VehicleImage $record): string => $record->url('thumb'))
-                    ->imageSize(80)
+                    ->imageSize(72)
                     ->square()
                     ->alt(fn (VehicleImage $record): string => $record->alt_text ?? 'Vehicle image'),
                 TextColumn::make('path')
@@ -75,13 +75,8 @@ class ImagesRelationManager extends RelationManager
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('sort_order')
-                    ->label('Order')
-                    ->sortable(),
-                TextColumn::make('is_cover')
-                    ->label('Cover')
-                    ->badge()
-                    ->formatStateUsing(fn (bool $state): string => $state ? 'Cover' : 'Gallery')
-                    ->color(fn (bool $state): string => $state ? 'success' : 'gray'),
+                    ->label('Display order')
+                    ->formatStateUsing(fn (int $state): int => $state + 1),
             ])
             ->headerActions([
                 Action::make('uploadImages')
@@ -113,6 +108,24 @@ class ImagesRelationManager extends RelationManager
                     ->successNotificationTitle('Images uploaded.'),
             ])
             ->recordActions([
+                Action::make('moveUp')
+                    ->label('Move up')
+                    ->icon(Heroicon::OutlinedArrowUp)
+                    ->iconButton()
+                    ->color('gray')
+                    ->visible(fn (VehicleImage $record): bool => ! $record->is_cover)
+                    ->action(function (VehicleImage $record): void {
+                        $this->moveImage($record, -1);
+                    }),
+                Action::make('moveDown')
+                    ->label('Move down')
+                    ->icon(Heroicon::OutlinedArrowDown)
+                    ->iconButton()
+                    ->color('gray')
+                    ->visible(fn (VehicleImage $record): bool => ! $record->is_cover)
+                    ->action(function (VehicleImage $record): void {
+                        $this->moveImage($record, 1);
+                    }),
                 Action::make('setCover')
                     ->label('Make cover')
                     ->icon(Heroicon::OutlinedStar)
@@ -132,7 +145,14 @@ class ImagesRelationManager extends RelationManager
                     })
                     ->successNotificationTitle('Image deleted.'),
             ])
-            ->reorderable('sort_order');
+            ->reorderRecordsTriggerAction(fn (Action $action, bool $isReordering): Action => $action
+                ->label($isReordering ? 'Finish arranging' : 'Arrange images'))
+            ->reorderable('sort_order')
+            ->afterReordering(function (array $order): void {
+                DB::transaction(function (): void {
+                    $this->keepCoverFirst($this->vehicle());
+                });
+            });
     }
 
     private function setCover(VehicleImage $image): void
@@ -144,6 +164,65 @@ class ImagesRelationManager extends RelationManager
         DB::transaction(function () use ($vehicle, $image): void {
             $vehicle->images()->update(['is_cover' => false]);
             $image->update(['is_cover' => true]);
+            $this->keepCoverFirst($vehicle);
+        });
+    }
+
+    private function keepCoverFirst(Vehicle $vehicle): void
+    {
+        $images = $vehicle->images()
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+        $coverImage = $images->firstWhere('is_cover', true);
+
+        if (! $coverImage) {
+            return;
+        }
+
+        $orderedImages = $images
+            ->reject(fn (VehicleImage $image): bool => $image->is($coverImage))
+            ->prepend($coverImage)
+            ->values();
+
+        foreach ($orderedImages as $sortOrder => $image) {
+            if ($image->sort_order !== $sortOrder) {
+                $image->update(['sort_order' => $sortOrder]);
+            }
+        }
+    }
+
+    private function moveImage(VehicleImage $image, int $direction): void
+    {
+        $vehicle = $this->vehicle();
+
+        abort_unless($image->vehicle_id === $vehicle->id, 404);
+
+        DB::transaction(function () use ($direction, $image, $vehicle): void {
+            $images = $vehicle->images()
+                ->orderBy('sort_order')
+                ->orderBy('id')
+                ->get();
+            $coverImage = $images->firstWhere('is_cover', true);
+            $galleryImages = $images
+                ->reject(fn (VehicleImage $record): bool => $coverImage && $record->is($coverImage))
+                ->values();
+            $currentIndex = $galleryImages->search(fn (VehicleImage $record): bool => $record->is($image));
+            $targetIndex = is_int($currentIndex) ? $currentIndex + $direction : -1;
+
+            if ($targetIndex < 0 || $targetIndex >= $galleryImages->count()) {
+                return;
+            }
+
+            $galleryImages->splice($currentIndex, 1);
+            $galleryImages->splice($targetIndex, 0, [$image]);
+            $orderedImages = $coverImage ? $galleryImages->prepend($coverImage) : $galleryImages;
+
+            foreach ($orderedImages->values() as $sortOrder => $record) {
+                if ($record->sort_order !== $sortOrder) {
+                    $record->update(['sort_order' => $sortOrder]);
+                }
+            }
         });
     }
 

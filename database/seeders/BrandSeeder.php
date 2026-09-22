@@ -12,7 +12,7 @@ class BrandSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (['Toyota', 'Mercedes-Benz', 'BMW', 'Audi', 'Volkswagen', 'Nissan', 'Mazda', 'Subaru', 'Land Rover', 'Lexus'] as $order => $name) {
+        foreach (['Toyota', 'Honda', 'Mazda', 'Mercedes-Benz', 'Subaru', 'Volvo'] as $order => $name) {
             Brand::updateOrCreate(
                 ['slug' => str($name)->slug()],
                 ['name' => $name, 'is_active' => true, 'sort_order' => $order + 1],

@@ -4,6 +4,7 @@ namespace App\Actions\Admin;
 
 use App\Models\User;
 use App\Models\Vehicle;
+use App\Models\VehicleImage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
@@ -52,6 +53,8 @@ class StoreVehicleImagesAction
 
                     $hasCover = true;
                 }
+
+                $this->keepCoverFirst($vehicle);
             });
         } catch (Throwable $exception) {
             foreach ($paths as $path) {
@@ -69,5 +72,29 @@ class StoreVehicleImagesAction
             $vehicle->brand()->value('name'),
             $vehicle->model,
         ])));
+    }
+
+    private function keepCoverFirst(Vehicle $vehicle): void
+    {
+        $images = $vehicle->images()
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+        $coverImage = $images->firstWhere('is_cover', true);
+
+        if (! $coverImage) {
+            return;
+        }
+
+        $orderedImages = $images
+            ->reject(fn (VehicleImage $image): bool => $image->is($coverImage))
+            ->prepend($coverImage)
+            ->values();
+
+        foreach ($orderedImages as $sortOrder => $image) {
+            if ($image->sort_order !== $sortOrder) {
+                $image->update(['sort_order' => $sortOrder]);
+            }
+        }
     }
 }

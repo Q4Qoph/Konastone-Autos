@@ -10,29 +10,14 @@
 <meta name="keywords" content="Konastone Autos and Imports - Car Dealership HTML Template">
 <meta name="robots" content="INDEX,FOLLOW">
 <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/img/favicons/apple-icon-57x57.png') }}">
-<link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/img/favicons/apple-icon-60x60.png') }}">
-<link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/img/favicons/apple-icon-72x72.png') }}">
-<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/favicons/apple-icon-76x76.png') }}">
-<link rel="apple-touch-icon" sizes="114x114" href="{{ asset('assets/img/favicons/apple-icon-114x114.png') }}">
-<link rel="apple-touch-icon" sizes="120x120" href="{{ asset('assets/img/favicons/apple-icon-120x120.png') }}">
-<link rel="apple-touch-icon" sizes="144x144" href="{{ asset('assets/img/favicons/apple-icon-144x144.png') }}">
-<link rel="apple-touch-icon" sizes="152x152" href="{{ asset('assets/img/favicons/apple-icon-152x152.png') }}">
-<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/favicons/apple-icon-180x180.png') }}">
-<link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/img/favicons/android-icon-192x192.png') }}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicons/favicon-32x32.png') }}">
-<link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/img/favicons/favicon-96x96.png') }}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicons/favicon-16x16.png') }}">
-<link rel="manifest" href="{{ asset('assets/img/favicons/manifest.json') }}">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="{{ asset('assets/img/favicons/ms-icon-144x144.png') }}">
-<meta name="theme-color" content="#ffffff">
+@include('partials.favicon')
 <link rel="preconnect" href="../../../fonts.googleapis.com/index.html">
 <link rel="preconnect" href="../../../fonts.gstatic.com/index.html" crossorigin>
 <link href="../../../fonts.googleapis.com/css2a956.css?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=Play:wght@400;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('assets/css/app.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/konastone-overrides.css') }}">
 </head>
 <body class="">
 <div class="slider-drag-cursor">&lt;DRAG&gt;</div>
@@ -321,15 +306,15 @@
 <ul>
 <li>
 <i class="fal fa-location-dot">
-</i> <a href="https://www.google.com/maps">835 Middle Country Rd, NY 11784, USA</a>
+</i> <a href="{{ config('dealership.contact.map_url') }}">{{ config('dealership.contact.address') }}, {{ config('dealership.contact.city') }}</a>
 </li>
 <li>
 <i class="fa-regular fa-phone">
-</i> <a href="tel:+225-65893-9874">+225-65893-9874</a>
+</i> <a href="tel:{{ config('dealership.contact.phone_formatted') }}">{{ config('dealership.contact.phone') }}</a>
 </li>
 <li>
 <i class="fa-sharp fa-regular fa-envelope">
-</i> <a href="mailto:info@konastoneautos.com">info@konastoneautos.com</a>
+</i> <a href="mailto:{{ config('dealership.contact.email') }}">{{ config('dealership.contact.email') }}</a>
 </li>
 </ul>
 </div>
@@ -1403,7 +1388,7 @@
 <div class="info-contnt">
 <h4 class="footer-info-title">Call Us:</h4>
 <p class="info-box_text">
-<a href="tel:+15264855467" class="info-box_link">+ 152-6485-5467</a>
+<a href="tel:{{ config('dealership.contact.phone_formatted') }}" class="info-box_link">{{ config('dealership.contact.phone') }}</a>
 </p>
 </div>
 </div>
@@ -1411,7 +1396,7 @@
 <div class="info-contnt">
 <h4 class="footer-info-title">Email Us:</h4>
 <p class="info-box_text">
-<a href="mailto:info@konastoneautos.com" class="info-box_link">info@konastoneautos.com</a>
+<a href="mailto:{{ config('dealership.contact.email') }}" class="info-box_link">{{ config('dealership.contact.email') }}</a>
 </p>
 </div>
 </div>
@@ -1426,7 +1411,7 @@
 </a> <a href="https://www.linkedin.com/">
 <i class="fab fa-linkedin-in">
 </i>
-</a> <a href="https://www.whatsapp.com/">
+</a> <a href="{{ config('dealership.contact.whatsapp_url') }}">
 <i class="fab fa-whatsapp">
 </i>
 </a>

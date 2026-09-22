@@ -1,0 +1,17 @@
+/* Keep vehicle card thumbnails uniform without changing the source images. */
+.feature-list-1 .box-icon {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.feature-list-1 .box-icon > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* The single vehicle gallery is designed to display a small set of panels. */
+.single-inventory-wrapper > .single-inventory-item:nth-child(n + 6) {
+    display: none;
+}

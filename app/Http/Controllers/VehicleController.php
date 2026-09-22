@@ -6,6 +6,7 @@ use App\Enums\VehicleStatus;
 use App\Http\Requests\InventoryFilterRequest;
 use App\Models\Brand;
 use App\Models\Vehicle;
+use App\Models\VehicleImage;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
 
@@ -44,6 +45,19 @@ class VehicleController extends Controller
 
         $vehicle->load(['brand', 'images', 'features']);
 
+        $galleryCover = $vehicle->images->firstWhere('is_cover', true) ?? $vehicle->images->first();
+        $galleryImages = $vehicle->images
+            ->reject(fn (VehicleImage $image): bool => $galleryCover && $image->is($galleryCover))
+            ->take(4)
+            ->values();
+
+        if ($galleryCover) {
+            $galleryImages->splice(intdiv($galleryImages->count(), 2), 0, [$galleryCover]);
+        }
+
+        $hiddenGalleryImages = $vehicle->images
+            ->reject(fn (VehicleImage $image): bool => $galleryImages->contains('id', $image->id));
+
         $relatedVehicles = $this->baseQuery()
             ->where('status', VehicleStatus::Available->value)
             ->whereKeyNot($vehicle->id)
@@ -55,7 +69,7 @@ class VehicleController extends Controller
             ->limit(4)
             ->get();
 
-        return view('pages.single-inventory', compact('vehicle', 'relatedVehicles'));
+        return view('pages.single-inventory', compact('vehicle', 'relatedVehicles', 'galleryCover', 'galleryImages', 'hiddenGalleryImages'));
     }
 
     private function listing(InventoryFilterRequest $request, string $viewMode, string $view): View
