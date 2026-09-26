@@ -77,6 +77,25 @@ class VehicleController extends Controller
         $filters = $request->validated();
         $query = $this->baseQuery()->where('status', VehicleStatus::Available->value);
 
+        $query->when(filled($filters['q'] ?? null), function (Builder $query) use ($filters): void {
+            $searchTerms = preg_split('/\s+/', trim($filters['q']), flags: PREG_SPLIT_NO_EMPTY) ?: [];
+
+            foreach ($searchTerms as $searchTerm) {
+                $like = '%'.$searchTerm.'%';
+
+                $query->where(function (Builder $termQuery) use ($searchTerm, $like): void {
+                    $termQuery->where('model', 'like', $like)
+                        ->orWhere('trim', 'like', $like)
+                        ->orWhere('stock_number', 'like', $like)
+                        ->orWhereHas('brand', fn (Builder $brandQuery) => $brandQuery->where('name', 'like', $like));
+
+                    if (ctype_digit($searchTerm)) {
+                        $termQuery->orWhere('year', (int) $searchTerm);
+                    }
+                });
+            }
+        });
+
         $query->when(filled($filters['brand'] ?? null), fn (Builder $q) => $q->whereHas('brand', fn (Builder $brand) => $brand->where('slug', str($filters['brand'])->slug())));
         $query->when(filled($filters['model'] ?? null), fn (Builder $q) => $q->where('model', 'like', '%'.$filters['model'].'%'));
         $query->when(filled($filters['condition'] ?? null), fn (Builder $q) => $q->where('condition', $filters['condition']));

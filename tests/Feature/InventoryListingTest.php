@@ -79,6 +79,57 @@ class InventoryListingTest extends TestCase
             ->assertDontSee(route('inventory.show', $outsidePriceRangeVehicle));
     }
 
+    public function test_keyword_search_matches_vehicle_terms_across_fields_and_keeps_available_scope(): void
+    {
+        $brand = Brand::factory()->create(['name' => 'Toyota', 'slug' => 'toyota']);
+        $matchingVehicle = Vehicle::factory()->for($brand)->create([
+            'model' => 'Corolla',
+            'trim' => 'Premium',
+            'year' => 2020,
+            'stock_number' => 'KON-1234',
+            'status' => VehicleStatus::Available,
+            'published_at' => now()->subDay(),
+        ]);
+        $soldVehicle = Vehicle::factory()->for($brand)->create([
+            'model' => 'Corolla',
+            'trim' => 'Premium',
+            'year' => 2020,
+            'stock_number' => 'KON-5678',
+            'status' => VehicleStatus::Sold,
+            'published_at' => now()->subDay(),
+        ]);
+
+        $this->get(route('inventory.index', ['q' => '2020 Toyota Corolla Premium KON-1234']))
+            ->assertSee(route('inventory.show', $matchingVehicle))
+            ->assertDontSee(route('inventory.show', $soldVehicle))
+            ->assertSee('name="q" value="2020 Toyota Corolla Premium KON-1234"', false);
+    }
+
+    public function test_keyword_search_is_available_from_shared_and_standalone_headers(): void
+    {
+        foreach ([route('home'), route('about'), route('finance.calculator'), route('sell.car')] as $url) {
+            $this->get($url)
+                ->assertSee('action="'.route('inventory.index').'"', false)
+                ->assertSee('name="q"', false)
+                ->assertSee('class="th-header header-default"', false)
+                ->assertSee('class="footer-wrapper footer-default bg-footer-color"', false);
+        }
+    }
+
+    public function test_keyword_search_rejects_terms_longer_than_one_hundred_characters(): void
+    {
+        $this->get(route('inventory.index', ['q' => str_repeat('a', 101)]))
+            ->assertRedirect(route('inventory.index'))
+            ->assertSessionHasErrors('q');
+    }
+
+    public function test_keyword_search_escapes_search_text_in_the_header_input(): void
+    {
+        $this->get(route('inventory.index', ['q' => '<script>alert(1)</script>']))
+            ->assertSee('name="q" value="&lt;script&gt;alert(1)&lt;/script&gt;"', false)
+            ->assertDontSee('<script>alert(1)</script>', false);
+    }
+
     public function test_rejects_reversed_price_ranges(): void
     {
         $this->get(route('inventory.index', ['min_price' => 5000000, 'max_price' => 1000000]))
@@ -178,5 +229,21 @@ class InventoryListingTest extends TestCase
         $this->get(route('home'))
             ->assertOk()
             ->assertSee('Featured Crown');
+    }
+
+    public function test_homepage_brand_logos_link_to_matching_inventory_filters(): void
+    {
+        $response = $this->get(route('home'))
+            ->assertSee('Explore By Brands')
+            ->assertDontSee('Our Popular Brands')
+            ->assertDontSee('Dealerships often build strong relationships with local communities')
+            ->assertSee(route('inventory.index', ['brand' => 'toyota']))
+            ->assertSee(asset('assets/img/brand/toyota.webp'))
+            ->assertSee('alt="Toyota"', false)
+            ->assertSee(route('inventory.index', ['brand' => 'land-rover']))
+            ->assertSee(asset('assets/img/brand/bmw.png'))
+            ->assertSee('alt="Volkswagen"', false);
+
+        $this->assertSame(28, substr_count($response->getContent(), 'class="brand-box"'));
     }
 }
