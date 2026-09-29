@@ -6,6 +6,7 @@ use App\Models\Enquiry;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -28,10 +29,12 @@ class EnquiriesTable
                     ->wrap(),
                 TextColumn::make('email')
                     ->searchable()
+                    ->visibleFrom('sm')
                     ->toggleable(),
                 TextColumn::make('phone')
                     ->searchable()
                     ->placeholder('—')
+                    ->visibleFrom('sm')
                     ->toggleable(),
                 TextColumn::make('vehicle.model')
                     ->label('Vehicle')
@@ -45,10 +48,12 @@ class EnquiriesTable
                 TextColumn::make('assignee.name')
                     ->label('Assigned to')
                     ->placeholder('Unassigned')
+                    ->visibleFrom('sm')
                     ->toggleable(),
                 TextColumn::make('follow_up_at')
                     ->label('Follow-up')
                     ->dateTime('d M Y H:i')
+                    ->visibleFrom('sm')
                     ->sortable()
                     ->toggleable(),
             ])
@@ -85,10 +90,12 @@ class EnquiriesTable
                         ->where('follow_up_at', '<', now())
                         ->whereNotIn('status', ['won', 'lost'])),
             ])
+            ->filtersLayout(FiltersLayout::AboveContentCollapsible)
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
             ])
+            ->stackedOnMobile()
             ->defaultSort('created_at', 'desc');
     }
 }

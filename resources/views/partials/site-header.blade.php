@@ -1,5 +1,5 @@
 <div class="slider-drag-cursor">&lt;DRAG&gt;</div>
-    <div class="preloader"><button class="th-btn preloaderCls">Cancel Preloader</button>
+    <div class="preloader">
         <div class="preloader-inner">
             <div id="load" role="status" aria-label="Loading">
                 <div aria-hidden="true">G</div>

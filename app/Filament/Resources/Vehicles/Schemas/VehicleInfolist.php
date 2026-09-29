@@ -4,8 +4,8 @@ namespace App\Filament\Resources\Vehicles\Schemas;
 
 use App\Models\Vehicle;
 use App\Models\VehicleImage;
-use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Components\ViewEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
@@ -15,39 +15,41 @@ class VehicleInfolist
     {
         return $schema
             ->components([
-                Section::make('Gallery')
+                Section::make('Summary')
                     ->schema([
-                        ImageEntry::make('gallery')
-                            ->label('Vehicle images')
-                            ->state(fn (Vehicle $record): array => $record->images
-                                ->take(5)
-                                ->map(fn (VehicleImage $image): string => $image->url('detail'))
-                                ->all())
-                            ->imageSize(180)
-                            ->columnSpanFull(),
-                    ])
-                    ->columnSpanFull(),
-                Section::make('Vehicle')
-                    ->schema([
-                        TextEntry::make('brand.name')
-                            ->label('Brand'),
-                        TextEntry::make('model'),
-                        TextEntry::make('trim')
-                            ->placeholder('—'),
-                        TextEntry::make('year'),
-                        TextEntry::make('condition')
-                            ->formatStateUsing(fn (mixed $state): string => ucfirst(str_replace('_', ' ', (string) $state))),
-                        TextEntry::make('stock_number')
-                            ->placeholder('—'),
-                    ])
-                    ->columns(3),
-                Section::make('Pricing and availability')
-                    ->schema([
+                        TextEntry::make('model')
+                            ->label('Vehicle')
+                            ->formatStateUsing(fn (Vehicle $record): string => $record->brand->name.' '.$record->model.' · '.$record->year),
                         TextEntry::make('price')
                             ->formatStateUsing(fn (mixed $state): string => 'KSh '.number_format((float) $state, 0)),
                         TextEntry::make('status')
                             ->badge()
                             ->formatStateUsing(fn (mixed $state): string => ucfirst($state?->value ?? (string) $state)),
+                    ])
+                    ->columns(['default' => 2, 'xl' => 3])
+                    ->columnSpanFull(),
+                Section::make('Gallery')
+                    ->schema([
+                        ViewEntry::make('gallery')
+                            ->hiddenLabel()
+                            ->view('partials.admin-vehicle-gallery')
+                            ->state(fn (Vehicle $record): array => $record->images
+                                ->map(fn (VehicleImage $image): array => [
+                                    'url' => $image->url('detail'),
+                                    'alt' => $image->alt_text ?: $record->brand->name.' '.$record->model,
+                                ])
+                                ->all())
+                            ->columnSpanFull(),
+                    ])
+                    ->columnSpanFull(),
+                Section::make('Vehicle')
+                    ->schema([
+                        TextEntry::make('trim')
+                            ->placeholder('—'),
+                        TextEntry::make('condition')
+                            ->formatStateUsing(fn (mixed $state): string => ucfirst(str_replace('_', ' ', (string) $state))),
+                        TextEntry::make('stock_number')
+                            ->placeholder('—'),
                         TextEntry::make('location')
                             ->placeholder('—'),
                         TextEntry::make('published_at')
@@ -57,8 +59,9 @@ class VehicleInfolist
                             ->dateTime('d M Y H:i')
                             ->placeholder('—'),
                     ])
-                    ->columns(3),
+                    ->columns(['default' => 2, 'xl' => 3]),
                 Section::make('Specifications')
+                    ->collapsed()
                     ->schema([
                         TextEntry::make('engine')
                             ->placeholder('—'),
@@ -90,7 +93,7 @@ class VehicleInfolist
                             ->placeholder('—')
                             ->columnSpanFull(),
                     ])
-                    ->columns(3),
+                    ->columns(['default' => 2, 'xl' => 3]),
             ]);
     }
 }

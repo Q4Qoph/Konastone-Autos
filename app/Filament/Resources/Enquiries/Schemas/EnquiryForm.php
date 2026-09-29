@@ -28,7 +28,7 @@ class EnquiryForm
                         TextInput::make('subject')
                             ->disabled(),
                     ])
-                    ->columns(2),
+                    ->columns(['md' => 2]),
                 Section::make('Enquiry')
                     ->schema([
                         Select::make('vehicle_id')
@@ -43,7 +43,7 @@ class EnquiryForm
                             ->disabled()
                             ->columnSpanFull(),
                     ])
-                    ->columns(2),
+                    ->columns(['md' => 2]),
                 Section::make('Follow-up')
                     ->schema([
                         Select::make('status')
@@ -67,7 +67,7 @@ class EnquiryForm
                             ->maxLength(5000)
                             ->columnSpanFull(),
                     ])
-                    ->columns(2),
+                    ->columns(['md' => 2]),
             ]);
     }
 }

@@ -10,6 +10,9 @@ use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Schemas\Components\Component;
+use Filament\Schemas\Components\EmbeddedTable;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\ImageColumn;
@@ -25,6 +28,20 @@ class ImagesRelationManager extends RelationManager
     protected static string $relationship = 'images';
 
     protected static ?string $title = 'Gallery';
+
+    public function content(Schema $schema): Schema
+    {
+        $schema = parent::content($schema);
+
+        return $schema->components(array_map(
+            fn (Component $component): Component => $component instanceof EmbeddedTable
+                ? Section::make('Manage images')
+                    ->schema([$component])
+                    ->collapsed()
+                : $component,
+            $schema->getComponents(),
+        ));
+    }
 
     public function form(Schema $schema): Schema
     {
@@ -62,12 +79,14 @@ class ImagesRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
+            ->extraAttributes(['class' => 'admin-vehicle-images-table'])
             ->recordTitleAttribute('path')
             ->columns([
                 ImageColumn::make('image_preview')
+                    ->extraCellAttributes(['class' => 'gallery-image-cell'])
                     ->label('Image')
                     ->state(fn (VehicleImage $record): string => $record->url('thumb'))
-                    ->imageSize(72)
+                    ->imageSize(48)
                     ->square()
                     ->alt(fn (VehicleImage $record): string => $record->alt_text ?? 'Vehicle image'),
                 TextColumn::make('path')
@@ -75,6 +94,7 @@ class ImagesRelationManager extends RelationManager
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('sort_order')
+                    ->extraCellAttributes(['class' => 'gallery-order-cell'])
                     ->label('Display order')
                     ->formatStateUsing(fn (int $state): int => $state + 1),
             ])
@@ -129,6 +149,7 @@ class ImagesRelationManager extends RelationManager
                 Action::make('setCover')
                     ->label('Make cover')
                     ->icon(Heroicon::OutlinedStar)
+                    ->iconButton()
                     ->color('warning')
                     ->visible(fn (VehicleImage $record): bool => ! $record->is_cover)
                     ->action(function (VehicleImage $record): void {
@@ -138,6 +159,7 @@ class ImagesRelationManager extends RelationManager
                 Action::make('deleteImage')
                     ->label('Delete')
                     ->icon(Heroicon::OutlinedTrash)
+                    ->iconButton()
                     ->color('danger')
                     ->requiresConfirmation()
                     ->action(function (VehicleImage $record): void {
@@ -145,6 +167,7 @@ class ImagesRelationManager extends RelationManager
                     })
                     ->successNotificationTitle('Image deleted.'),
             ])
+            ->stackedOnMobile()
             ->reorderRecordsTriggerAction(fn (Action $action, bool $isReordering): Action => $action
                 ->label($isReordering ? 'Finish arranging' : 'Arrange images'))
             ->reorderable('sort_order')

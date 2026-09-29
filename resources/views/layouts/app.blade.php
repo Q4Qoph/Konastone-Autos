@@ -101,739 +101,13 @@
     </div>
     <section class="feature-sec-1 space" data-bg-src="{{ asset('assets/img/bg/feature-sec-bg-1.png') }}">
         <div class="container">
-            <div class="row justify-content-lg-between justify-content-center align-items-center">
-                <div class="col-xxl-7 col-xl-9">
-                    <div class="title-area text-center text-lg-start">
-                        <h2 class="sec-title">Latest Featured Car Inventory</h2>
-                        <p class="pe-lg-5 me-xl-5">Car dealerships typically feature showrooms where the latest models are displayed in a well-lit, aesthetically pleasing environment.</p>
-                    </div>
-                </div>
-                <div class="col-auto mt-2">
-                    <div class="sec-btn">
-                        <ul class="nav nav-tabs custom" id="myTabContentF1h11" role="tablist">
-                            <li class="nav-item" role="presentation"><button class="nav-link active" id="featured-cars-tab" data-bs-toggle="tab" data-bs-target="#featured-cars" type="button" role="tab" aria-controls="featured-cars" aria-selected="true">Featured Cars</button></li>
-                            <li class="nav-item" role="presentation"><button class="nav-link" id="recent-cars-tab" data-bs-toggle="tab" data-bs-target="#recent-cars" type="button" role="tab" aria-controls="recent-cars" aria-selected="false">Recent Cars</button></li>
-                            <li class="nav-item" role="presentation"><button class="nav-link" id="popular-cars-tab" data-bs-toggle="tab" data-bs-target="#popular-cars" type="button" role="tab" aria-controls="popular-cars" aria-selected="false">Popular Cars</button></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-content" id="myTabContentF1h1">
-                <div class="tab-pane fade show active" id="featured-cars" role="tabpanel" aria-labelledby="featured-cars-tab">
-                    <div class="row gy-30">
-                        @if (isset($featuredVehicles))
-                            @include('partials.vehicle-cards', ['vehicles' => $featuredVehicles, 'viewMode' => 'grid'])
-                            @if ($featuredVehicles->isEmpty())
-                                <div class="col-12"><p class="text-center">Our featured inventory is being updated.</p></div>
-                            @endif
-                        @else
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-1.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Ford Explorer XLT</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> BMW X3 M40i</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$17,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-2.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Toyota Corolla LE</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Ford Explorer XLT</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$16,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-3.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Honda Civic Sport</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Toyota Camry SE</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$18,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-4.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Nissan Altima SV</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Honda Accord LX</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$14,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-5.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Audi Q7 Premium</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Nissan Rogue SV</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$11,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-6.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Kia Sorento LX</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Audi A4 Quattro</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$19,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-7.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">JTesla Model Y</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Hyundai Santa Fe</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$27,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-8.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Mazda CX-5 Sport</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Tesla Model 3</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$21,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="recent-cars" role="tabpanel" aria-labelledby="recent-cars-tab">
-                    <div class="row gy-30 justify-content-center">
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-8.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Genesis G80 Sport</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Acura TLX Type</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$27,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-11.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">BMW X5 MY</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Infiniti Q50 Red</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$19,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-7.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Kia Sorento LX</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Lexus ES 350</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$23,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-10.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Ram 1500 Rebel</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Cadillac XT5 Sport</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$21,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-9.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Mazda CX-5 Sport</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> BMW X3 M40i</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$25,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-1.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">JTesla Model Y</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Tesla Model 3</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$26,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-3.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Ford Explorer XLT</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Ford Explorer XLT</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$29,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-12.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">GMC Yukon Denali</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Hyundai Santa Fe</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$17,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="popular-cars" role="tabpanel" aria-labelledby="popular-cars-tab">
-                    <div class="row gy-30 justify-content-center">
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-10.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">GMC Yukon Denali</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> BMW X3 M40i</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$19,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-1.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Ford Explorer XLT</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Ford Explorer XLT</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$18,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-9.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">BMW X5 MY</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Tesla Model 3</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$27,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-12.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Toyota Corolla LE</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Honda Accord LX</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$23,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-3.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Genesis G80 Sport</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Hyundai Santa Fe</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$16,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-6.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Ram 1500 Rebel</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Acura TLX Type</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$11,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-2.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Kia Sorento LX</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Lexus ES 350</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$21,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="feature-list-1">
-                                <div class="box-icon"><img src="{{ asset('assets/img/featured/featured-1-7.jpg') }}" alt="image">
-                                    <div class="actions"><a href="#" class="icon-btn"><i class="fa-regular fa-tag"></i></a> <a href="#" class="icon-btn"><i class="far fa-heart"></i></a></div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="{{ route('inventory.index') }}">Honda Civic Sport</a></h3>
-                                        <p class="box-text"><span>Listed by:</span> Infiniti Q50 Red</p>
-                                    </div>
-                                    <ul class="car-feature">
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-1.svg') }}" alt="icon"></div>120cc
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-2.svg') }}" alt="icon"></div>Manual
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <div class="icon"><img src="{{ asset('assets/img/icon/car-feature-icon-1-3.svg') }}" alt="icon"></div>Petrol
-                                        </li>
-                                    </ul>
-                                    <div class="car-bottom">
-                                        <h6 class="box-title">$14,000</h6><a class="th-btn sm style3" href="{{ route('inventory.index') }}">View Details <i class="fas fa-arrow-up-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="row gy-30">
+                @if (isset($featuredVehicles))
+                    @include('partials.vehicle-cards', ['vehicles' => $featuredVehicles, 'viewMode' => 'grid'])
+                    @if ($featuredVehicles->isEmpty())
+                        <div class="col-12"><p class="text-center">Our featured inventory is being updated.</p></div>
+                    @endif
+                @endif
             </div>
             <div class="col-lg-12 mt-5 text-center"><a href="{{ route('inventory.index') }}" class="th-btn bg-black">View All Listing <i class="fas fa-arrow-up-right"></i></a></div>
         </div>
@@ -849,7 +123,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="swiper th-slider" id="brand-slider-1" data-slider-options='{"loop":true,"speed":500,"autoplay":{"delay":1800,"disableOnInteraction":false},"breakpoints":{"0":{"slidesPerView":2},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"3"},"992":{"slidesPerView":"4"},"1200":{"slidesPerView":"5"},"1400":{"slidesPerView":"6"}}}'>
+                    <div class="swiper th-slider" id="brand-slider-1" data-slider-options='{"loop":true,"speed":3000,"autoplay":{"delay":0,"disableOnInteraction":false},"breakpoints":{"0":{"slidesPerView":2},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"3"},"992":{"slidesPerView":"4"},"1200":{"slidesPerView":"5"},"1400":{"slidesPerView":"6"}}}'>
                         <div class="swiper-wrapper">
                             @foreach ($exploreBrands as $brand)
                                 <div class="swiper-slide">
@@ -2044,6 +1318,82 @@
     <script src="{{ asset('assets/js/vendor/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script>
+        (() => {
+            const slider = document.querySelector('#brand-slider-1');
+            const swiper = slider?.swiper;
+
+            if (!swiper?.autoplay) {
+                return;
+            }
+
+            let isMouseOver = false;
+            let isTouchHeld = false;
+            let pausedTransitions = [];
+
+            const pauseAutoplay = () => {
+                swiper.autoplay.stop();
+                pausedTransitions = typeof swiper.wrapperEl.getAnimations === 'function'
+                    ? swiper.wrapperEl.getAnimations()
+                        .filter((animation) => !['finished', 'idle'].includes(animation.playState))
+                    : [];
+
+                pausedTransitions.forEach((animation) => animation.pause());
+            };
+
+            const resumeAutoplay = () => {
+                if (isMouseOver || isTouchHeld) {
+                    return;
+                }
+
+                const shouldWaitForTransition = swiper.animating;
+
+                if (shouldWaitForTransition) {
+                    swiper.once('transitionEnd', () => swiper.autoplay.start());
+                }
+
+                pausedTransitions.forEach((animation) => animation.play());
+                pausedTransitions = [];
+
+                if (!shouldWaitForTransition) {
+                    swiper.autoplay.start();
+                }
+            };
+
+            slider.addEventListener('pointerenter', (event) => {
+                if (event.pointerType === 'mouse') {
+                    isMouseOver = true;
+                    pauseAutoplay();
+                }
+            });
+            slider.addEventListener('pointerleave', (event) => {
+                if (event.pointerType === 'mouse') {
+                    isMouseOver = false;
+                    resumeAutoplay();
+                }
+            });
+            slider.addEventListener('touchstart', () => {
+                isTouchHeld = true;
+                pauseAutoplay();
+            }, { passive: true });
+            slider.addEventListener('touchmove', () => {
+                if (isMouseOver) {
+                    return;
+                }
+
+                pausedTransitions.forEach((animation) => animation.play());
+                pausedTransitions = [];
+            }, { passive: true });
+            slider.addEventListener('touchend', () => {
+                isTouchHeld = false;
+                resumeAutoplay();
+            }, { passive: true });
+            slider.addEventListener('touchcancel', () => {
+                isTouchHeld = false;
+                resumeAutoplay();
+            }, { passive: true });
+        })();
+    </script>
 </body>
 <!-- Mirrored from html.themehour.net/kars/demo/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Sep 2026 10:10:40 GMT -->
 

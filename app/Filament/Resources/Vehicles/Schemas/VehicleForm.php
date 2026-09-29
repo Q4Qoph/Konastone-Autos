@@ -47,7 +47,7 @@ class VehicleForm
                             ->maxLength(255)
                             ->unique(ignoreRecord: true),
                     ])
-                    ->columns(2),
+                    ->columns(['md' => 2]),
                 Section::make('Pricing and availability')
                     ->schema([
                         TextInput::make('price')
@@ -75,7 +75,7 @@ class VehicleForm
                         Toggle::make('financing_available')
                             ->label('Financing available'),
                     ])
-                    ->columns(2),
+                    ->columns(['md' => 2]),
                 Section::make('Specifications')
                     ->schema([
                         TextInput::make('engine')
@@ -110,7 +110,7 @@ class VehicleForm
                         TextInput::make('interior_color')
                             ->maxLength(255),
                     ])
-                    ->columns(3),
+                    ->columns(['md' => 2, 'xl' => 3]),
                 Section::make('Initial gallery')
                     ->description('Optional during creation. You can manage the gallery after saving the vehicle.')
                     ->schema([

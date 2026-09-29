@@ -55,6 +55,7 @@ class AuditLogsRelationManager extends RelationManager
                     ->label('Changed by')
                     ->placeholder('System'),
             ])
+            ->stackedOnMobile()
             ->defaultSort('created_at', 'desc');
     }
 }

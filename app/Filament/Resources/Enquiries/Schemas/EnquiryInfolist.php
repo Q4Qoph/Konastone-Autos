@@ -19,7 +19,7 @@ class EnquiryInfolist
                         TextEntry::make('phone')
                             ->placeholder('—'),
                     ])
-                    ->columns(3),
+                    ->columns(['md' => 2, 'xl' => 3]),
                 Section::make('Enquiry')
                     ->schema([
                         TextEntry::make('vehicle.model')
@@ -30,7 +30,7 @@ class EnquiryInfolist
                         TextEntry::make('message')
                             ->columnSpanFull(),
                     ])
-                    ->columns(2),
+                    ->columns(['md' => 2]),
                 Section::make('Follow-up')
                     ->schema([
                         TextEntry::make('status')
@@ -45,7 +45,7 @@ class EnquiryInfolist
                             ->placeholder('No internal notes')
                             ->columnSpanFull(),
                     ])
-                    ->columns(2),
+                    ->columns(['md' => 2]),
             ]);
     }
 }

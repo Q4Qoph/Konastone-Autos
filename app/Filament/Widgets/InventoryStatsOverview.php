@@ -13,6 +13,14 @@ class InventoryStatsOverview extends BaseWidget
 {
     protected static bool $isLazy = false;
 
+    protected function getColumns(): int|array|null
+    {
+        return [
+            'default' => 2,
+            '@xl' => 4,
+        ];
+    }
+
     protected function getStats(): array
     {
         return [
