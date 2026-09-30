@@ -29,7 +29,7 @@ class FilamentPanelAccessTest extends TestCase
 
     public function test_staff_users_can_access_the_filament_panel(): void
     {
-        $this->actingAs(User::factory()->create(['is_staff' => true]))
+        $this->actingAs(User::factory()->owner()->create())
             ->get('/admin')
             ->assertOk()
             ->assertSee('Available vehicles');
@@ -43,7 +43,7 @@ class FilamentPanelAccessTest extends TestCase
             'model' => 'Panel Test Vehicle',
         ]);
 
-        $this->actingAs(User::factory()->create(['is_staff' => true]))
+        $this->actingAs(User::factory()->owner()->create())
             ->get('/admin/inventory')
             ->assertOk()
             ->assertSee($vehicle->model);
@@ -51,7 +51,7 @@ class FilamentPanelAccessTest extends TestCase
 
     public function test_staff_users_can_open_the_filament_inventory_form(): void
     {
-        $this->actingAs(User::factory()->create(['is_staff' => true]))
+        $this->actingAs(User::factory()->owner()->create())
             ->get('/admin/inventory/create')
             ->assertOk()
             ->assertSee('Vehicle identity')
@@ -71,13 +71,13 @@ class FilamentPanelAccessTest extends TestCase
         ]);
         AuditLog::create([
             'vehicle_id' => $vehicle->id,
-            'user_id' => User::factory()->create(['is_staff' => true])->id,
+            'user_id' => User::factory()->owner()->create()->id,
             'event' => 'updated',
             'old_values' => ['price' => 1000000],
             'new_values' => ['price' => 1100000],
         ]);
 
-        $this->actingAs(User::factory()->create(['is_staff' => true]))
+        $this->actingAs(User::factory()->owner()->create())
             ->get('/admin/inventory/'.$vehicle->slug.'/edit')
             ->assertOk()
             ->assertSee('Gallery')
@@ -96,7 +96,7 @@ class FilamentPanelAccessTest extends TestCase
             'model' => 'Slug View Vehicle',
         ]);
 
-        $this->actingAs(User::factory()->create(['is_staff' => true]))
+        $this->actingAs(User::factory()->owner()->create())
             ->get('/admin/inventory/'.$vehicle->slug)
             ->assertOk()
             ->assertSee('Slug View Vehicle')
@@ -109,7 +109,7 @@ class FilamentPanelAccessTest extends TestCase
             'name' => 'Panel Enquiry Customer',
         ]);
 
-        $this->actingAs(User::factory()->create(['is_staff' => true]))
+        $this->actingAs(User::factory()->owner()->create())
             ->get('/admin/leads')
             ->assertOk()
             ->assertSee($enquiry->name);
@@ -119,7 +119,7 @@ class FilamentPanelAccessTest extends TestCase
     {
         $enquiry = Enquiry::factory()->create();
 
-        $this->actingAs(User::factory()->create(['is_staff' => true]))
+        $this->actingAs(User::factory()->owner()->create())
             ->get('/admin/leads/'.$enquiry->id.'/edit')
             ->assertOk()
             ->assertSee('Follow-up')

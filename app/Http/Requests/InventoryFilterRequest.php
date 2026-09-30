@@ -21,7 +21,7 @@ class InventoryFilterRequest extends FormRequest
             'q' => ['nullable', 'string', 'max:100'],
             'brand' => ['nullable', 'string', 'max:100'],
             'model' => ['nullable', 'string', 'max:100'],
-            'condition' => ['nullable', Rule::in(['foreign_used', 'locally_used'])],
+            'condition' => ['nullable', Rule::in(['new', 'foreign_used', 'locally_used'])],
             'body_type' => ['nullable', 'string', 'max:50'],
             'cylinders' => ['nullable', 'integer', 'between:1,16'],
             'doors' => ['nullable', 'integer', 'between:1,8'],

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Vehicle;
 use App\Models\VehicleImage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Throwable;
@@ -17,6 +18,8 @@ class StoreVehicleImagesAction
      */
     public function handle(Vehicle $vehicle, array $paths, User $user, string $disk = 'r2'): void
     {
+        Gate::forUser($user->fresh())->authorize('update', $vehicle);
+
         $paths = array_values(array_filter($paths, is_string(...)));
 
         if ($paths === []) {

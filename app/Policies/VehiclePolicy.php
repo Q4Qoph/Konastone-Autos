@@ -28,7 +28,7 @@ class VehiclePolicy
      */
     public function create(User $user): bool
     {
-        return $user->is_staff;
+        return $user->isOwner();
     }
 
     /**
@@ -36,7 +36,7 @@ class VehiclePolicy
      */
     public function update(User $user, Vehicle $vehicle): bool
     {
-        return $user->is_staff;
+        return $user->isOwner();
     }
 
     /**

@@ -7,12 +7,15 @@ use App\Models\AuditLog;
 use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\ValidationException;
 
 class UpdateVehicleStatusAction
 {
     public function handle(Vehicle $vehicle, VehicleStatus $status, User $user): Vehicle
     {
+        Gate::forUser($user->fresh())->authorize('update', $vehicle);
+
         if (in_array($status, [VehicleStatus::Available, VehicleStatus::Reserved, VehicleStatus::Sold], true) && ! $vehicle->hasMinimumPublicGallery()) {
             throw ValidationException::withMessages([
                 'status' => 'At least four images and one cover image are required before this vehicle can be published.',

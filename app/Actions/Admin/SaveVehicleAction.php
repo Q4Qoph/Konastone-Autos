@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -18,6 +19,8 @@ class SaveVehicleAction
      */
     public function handle(array $data, User $user, ?Vehicle $vehicle = null): Vehicle
     {
+        Gate::forUser($user->fresh())->authorize($vehicle ? 'update' : 'create', $vehicle ?? Vehicle::class);
+
         return DB::transaction(function () use ($data, $user, $vehicle): Vehicle {
             $brand = Brand::query()->findOrFail($data['brand_id']);
             $oldValues = $vehicle?->only(['brand_id', 'model', 'price', 'status', 'published_at', 'sold_at']);

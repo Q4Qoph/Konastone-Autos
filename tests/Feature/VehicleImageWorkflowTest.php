@@ -20,7 +20,7 @@ class VehicleImageWorkflowTest extends TestCase
     public function test_staff_can_store_vehicle_image_metadata_for_four_r2_objects(): void
     {
         Storage::fake('r2');
-        $staff = User::factory()->create(['is_staff' => true]);
+        $staff = User::factory()->owner()->create();
         $vehicle = Vehicle::factory()->for(Brand::factory())->create([
             'status' => VehicleStatus::Draft,
             'published_at' => null,
@@ -50,7 +50,7 @@ class VehicleImageWorkflowTest extends TestCase
 
     public function test_public_status_requires_four_images_and_a_cover(): void
     {
-        $staff = User::factory()->create(['is_staff' => true]);
+        $staff = User::factory()->owner()->create();
         $vehicle = Vehicle::factory()->for(Brand::factory())->create([
             'status' => VehicleStatus::Draft,
             'published_at' => null,

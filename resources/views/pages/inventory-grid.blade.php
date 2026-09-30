@@ -80,6 +80,14 @@
 </form>
 <div class="advance-search-wrapper stye-2 home-4-style">
 <div class="form-group">
+<select name="condition" form="inventory-search" id="select_condition" class="form-select nice-select" aria-label="Vehicle condition">
+<option value="" @selected(blank($filters['condition'] ?? null))>All conditions</option>
+<option value="new" @selected(($filters['condition'] ?? null) === 'new')>New</option>
+<option value="foreign_used" @selected(($filters['condition'] ?? null) === 'foreign_used')>Foreign Used</option>
+<option value="locally_used" @selected(($filters['condition'] ?? null) === 'locally_used')>Locally Used</option>
+</select>
+</div>
+<div class="form-group">
 <select name="drivetrain" form="inventory-search" id="select_make1-drive" class="form-select nice-select">
 <option value="" disabled="disabled" selected="selected" hidden>Drive Type</option>
 <option value="2wd">2WD</option>

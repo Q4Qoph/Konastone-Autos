@@ -58,6 +58,27 @@ class InventoryListingTest extends TestCase
             ->assertSee(asset('assets/img/featured/featured-1-2.jpg'));
     }
 
+    public function test_new_condition_filters_public_inventory_in_list_and_grid_views(): void
+    {
+        $brand = Brand::factory()->create();
+        $newVehicle = Vehicle::factory()->for($brand)->create(['condition' => 'new']);
+        $usedVehicle = Vehicle::factory()->for($brand)->create(['condition' => 'foreign_used']);
+        $draftVehicle = Vehicle::factory()->for($brand)->create([
+            'condition' => 'new',
+            'status' => VehicleStatus::Draft,
+            'published_at' => null,
+        ]);
+
+        foreach (['inventory.index', 'inventory.grid'] as $routeName) {
+            $this->get(route($routeName, ['condition' => 'new']))
+                ->assertOk()
+                ->assertSee(route('inventory.show', $newVehicle))
+                ->assertDontSee(route('inventory.show', $usedVehicle))
+                ->assertDontSee(route('inventory.show', $draftVehicle))
+                ->assertSee('value="new" selected', false);
+        }
+    }
+
     public function test_filters_available_inventory_by_brand_and_price(): void
     {
         $brand = Brand::factory()->create(['name' => 'Toyota', 'slug' => 'toyota']);

@@ -29,6 +29,9 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->passwordReset()
+            ->emailVerification()
+            ->profile()
             ->brandName('Konastone Autos')
             ->assets([
                 Css::make('admin-mobile-tables', asset('assets/css/admin-mobile-tables.css')),

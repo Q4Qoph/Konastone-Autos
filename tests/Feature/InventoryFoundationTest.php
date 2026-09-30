@@ -40,13 +40,12 @@ class InventoryFoundationTest extends TestCase
     {
         $this->seed();
 
-        $this->assertSame(10, Brand::count());
-        $this->assertSame(22, Vehicle::count());
-        $this->assertGreaterThan(0, Vehicle::where('status', VehicleStatus::Available)->count());
-        $this->assertGreaterThan(0, Vehicle::where('status', VehicleStatus::Reserved)->count());
-        $this->assertGreaterThan(0, Vehicle::where('status', VehicleStatus::Sold)->count());
-        $this->assertGreaterThan(0, Vehicle::where('status', VehicleStatus::Draft)->count());
-        $this->assertSame(0, Vehicle::whereNull('published_at')->where('status', '!=', VehicleStatus::Draft)->count());
+        $this->assertSame(6, Brand::count());
+        $this->assertSame(12, Vehicle::count());
+        $this->assertSame(12, Vehicle::where('status', VehicleStatus::Available)->published()->count());
+        $this->assertSame(0, Vehicle::where('status', '!=', VehicleStatus::Available)->count());
+        $this->assertSame(0, Vehicle::where('condition', '!=', 'foreign_used')->count());
+        $this->assertSame(0, Vehicle::whereNotNull('sold_at')->count());
     }
 
     public function test_inventory_pages_render_without_available_stock(): void

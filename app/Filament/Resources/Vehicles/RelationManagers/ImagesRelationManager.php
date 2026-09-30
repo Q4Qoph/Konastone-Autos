@@ -19,6 +19,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class ImagesRelationManager extends RelationManager
@@ -100,6 +101,7 @@ class ImagesRelationManager extends RelationManager
             ])
             ->headerActions([
                 Action::make('uploadImages')
+                    ->visible(fn (): bool => auth()->user()->can('update', $this->vehicle()))
                     ->label('Upload images')
                     ->icon(Heroicon::OutlinedArrowUpTray)
                     ->schema([
@@ -133,7 +135,7 @@ class ImagesRelationManager extends RelationManager
                     ->icon(Heroicon::OutlinedArrowUp)
                     ->iconButton()
                     ->color('gray')
-                    ->visible(fn (VehicleImage $record): bool => ! $record->is_cover)
+                    ->visible(fn (VehicleImage $record): bool => ! $record->is_cover && auth()->user()->can('update', $this->vehicle()))
                     ->action(function (VehicleImage $record): void {
                         $this->moveImage($record, -1);
                     }),
@@ -142,7 +144,7 @@ class ImagesRelationManager extends RelationManager
                     ->icon(Heroicon::OutlinedArrowDown)
                     ->iconButton()
                     ->color('gray')
-                    ->visible(fn (VehicleImage $record): bool => ! $record->is_cover)
+                    ->visible(fn (VehicleImage $record): bool => ! $record->is_cover && auth()->user()->can('update', $this->vehicle()))
                     ->action(function (VehicleImage $record): void {
                         $this->moveImage($record, 1);
                     }),
@@ -151,12 +153,13 @@ class ImagesRelationManager extends RelationManager
                     ->icon(Heroicon::OutlinedStar)
                     ->iconButton()
                     ->color('warning')
-                    ->visible(fn (VehicleImage $record): bool => ! $record->is_cover)
+                    ->visible(fn (VehicleImage $record): bool => ! $record->is_cover && auth()->user()->can('update', $this->vehicle()))
                     ->action(function (VehicleImage $record): void {
                         $this->setCover($record);
                     })
                     ->successNotificationTitle('Cover image updated.'),
                 Action::make('deleteImage')
+                    ->visible(fn (): bool => auth()->user()->can('update', $this->vehicle()))
                     ->label('Delete')
                     ->icon(Heroicon::OutlinedTrash)
                     ->iconButton()
@@ -170,7 +173,7 @@ class ImagesRelationManager extends RelationManager
             ->stackedOnMobile()
             ->reorderRecordsTriggerAction(fn (Action $action, bool $isReordering): Action => $action
                 ->label($isReordering ? 'Finish arranging' : 'Arrange images'))
-            ->reorderable('sort_order')
+            ->reorderable('sort_order', condition: fn (): bool => auth()->user()->can('update', $this->vehicle()))
             ->afterReordering(function (array $order): void {
                 DB::transaction(function (): void {
                     $this->keepCoverFirst($this->vehicle());
@@ -181,6 +184,8 @@ class ImagesRelationManager extends RelationManager
     private function setCover(VehicleImage $image): void
     {
         $vehicle = $this->vehicle();
+
+        Gate::authorize('update', $vehicle);
 
         abort_unless($image->vehicle_id === $vehicle->id, 404);
 
@@ -219,6 +224,8 @@ class ImagesRelationManager extends RelationManager
     {
         $vehicle = $this->vehicle();
 
+        Gate::authorize('update', $vehicle);
+
         abort_unless($image->vehicle_id === $vehicle->id, 404);
 
         DB::transaction(function () use ($direction, $image, $vehicle): void {
@@ -252,6 +259,8 @@ class ImagesRelationManager extends RelationManager
     private function deleteImage(VehicleImage $image): void
     {
         $vehicle = $this->vehicle();
+
+        Gate::authorize('update', $vehicle);
 
         abort_unless($image->vehicle_id === $vehicle->id, 404);
 
